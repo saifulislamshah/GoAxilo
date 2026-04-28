@@ -1,2485 +1,2139 @@
 <!DOCTYPE html>
 <!--
 =======================================================
-  GoAxilo — AI Automation Agency Website (Version 4)
-  Owner: Saiful Islam
-  Website: goaxilo.ai / goaxilo.com
-  Social: @GoAxilo (সব platform-এ)
+  GoAxilo — AI Automation Agency (Dark Premium Edition)
+  Owner: Saiful Islam Shah
+  Website: goaxilo.com
+  Version: 5.0 — Dark Premium
 
-  ✏️ এই file কীভাবে edit করবে:
-  - VS Code বা Notepad++ দিয়ে open করো
-  - Ctrl+F দিয়ে যেকোনো text খুঁজে পাবে
-  - Comment পড়ে বুঝে নাও কোথায় কী change করতে হবে
-  - Save করে browser-এ refresh করলেই দেখবে
-
-  🎨 Color change করতে চাইলে:
-  - coolors.co বা htmlcolorcodes.com এ যাও
-  - পছন্দের color-এর HEX code নাও (#XXXXXX format)
-  - নিচের :root section-এ replace করো
+  ✏️ কীভাবে edit করবে:
+  - Ctrl+F দিয়ে যেকোনো text খুঁজে নাও
+  - Comment পড়ে বুঝে edit করো
+  - Save করে browser-এ দেখো
 =======================================================
 -->
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- ✏️ BROWSER TAB TITLE: Browser-এর tab-এ যা দেখাবে, এটা change করতে পারো -->
-    <title>GoAxilo — AI Automation Agency | Automate Everything. Scale Anywhere.</title>
-
-    <!-- 🔤 FONTS: Google থেকে Syne (heading) এবং DM Sans (body) font load হচ্ছে
-         এই fonts change করতে চাইলে fonts.google.com এ যাও -->
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <style>
-        /* =====================================================
-           RESET: সব browser-এর default style বাদ দেওয়া হচ্ছে
-           এটা সাধারণত change করতে হয় না
-           ===================================================== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* =====================================================
-           🎨 COLOR VARIABLES (রং পরিবর্তন করার জায়গা)
-           এখানে সব color একসাথে আছে।
-           যেকোনো color change করতে চাইলে শুধু এই section-এ করো।
-           বাকি সব জায়গায় automatically update হয়ে যাবে।
-
-           Python-এর মতো ভাবো: এগুলো হলো global variables
-           যেমন: PRIMARY_COLOR = "#534AB7"
-           ===================================================== */
-        :root {
-            /* --- MAIN BRAND COLOR (GoAxilo-এর প্রধান বেগুনি রং) ---
-               এটা buttons, links, highlights-এ ব্যবহার হয়
-               অন্য color দিতে চাইলে এই value বদলাও */
-            --primary: #534AB7;
-
-            /* --- LIGHT VERSION (হালকা বেগুনি, background-এ ব্যবহার হয়) --- */
-            --primary-light: #EEEDFE;
-
-            /* --- MID VERSION (মাঝারি বেগুনি, gradient-এ ব্যবহার হয়) --- */
-            --primary-mid: #7F77DD;
-
-            /* --- ACCENT (accent রং, ছোট elements-এ) --- */
-            --primary-accent: #AFA9EC;
-
-            /* --- DARK VERSION (গাঢ় বেগুনি, hover state-এ) --- */
-            --primary-dark: #3C3489;
-
-            /* --- DEEP BLACK (Hero section-এর background রং)
-               পুরো কালো চাইলে: #000000
-               একটু নরম কালো: #111111 বা #1a1a1a --- */
-            --deep-black: #0D0D0F;
-
-            /* --- OFF WHITE (বেশিরভাগ section-এর background)
-               পুরো সাদা চাইলে: #ffffff --- */
-            --off-white: #F8F7F4;
-
-            /* --- TEXT COLORS (লেখার রং) --- */
-            --text-primary: #1A1A2E;    /* প্রধান লেখার রং */
-            --text-secondary: #5F5E5A;  /* ছোট লেখার রং */
-            --text-tertiary: #888780;   /* সবচেয়ে হালকা লেখার রং */
-            --border: #E8E6E0;          /* border-এর রং */
-        }
-
-        /* --- SMOOTH SCROLL: link click করলে smooth-এ scroll হবে --- */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* --- BODY: পুরো page-এর default style ---
-           font-family: কোন font ব্যবহার হবে
-           background: page-এর background রং
-           color: default লেখার রং */
-        body {
-            font-family: 'DM Sans', sans-serif; /* ✏️ font change করতে চাইলে এখানে */
-            background: var(--off-white);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden; /* horizontal scroll বন্ধ */
-        }
-
-        /* =====================================================
-           🎬 ANIMATIONS (CSS দিয়ে তৈরি animation গুলো)
-           Python-এর function-এর মতো — একবার define করো,
-           যেকোনো জায়গায় ব্যবহার করো।
-           এগুলো সাধারণত change করতে হয় না।
-           ===================================================== */
-
-        /* Hero section-এর floating orb animation (বড় glowing circle যেটা ভাসে) */
-        @keyframes floatOrb1 {
-            0%, 100% { transform: translate(0, 0); }
-            25% { transform: translate(30px, -50px); }
-            50% { transform: translate(-20px, 30px); }
-            75% { transform: translate(50px, 20px); }
-        }
-
-        @keyframes floatOrb2 {
-            0%, 100% { transform: translate(0, 0); }
-            25% { transform: translate(-40px, 40px); }
-            50% { transform: translate(30px, -30px); }
-            75% { transform: translate(-50px, -20px); }
-        }
-
-        /* Headline-এর gradient color animation */
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* নিচ থেকে উপরে fade-in animation */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* বাম থেকে ডানে slide animation */
-        @keyframes slideInLeft {
-            from { opacity: 0; transform: translateX(-40px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        /* ডান থেকে বামে slide animation */
-        @keyframes slideInRight {
-            from { opacity: 0; transform: translateX(40px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        /* =====================================================
-           📐 LAYOUT UTILITIES (সব section-এ ব্যবহার হওয়া common styles)
-           ===================================================== */
-
-        /* Container: content-কে center-এ রাখে এবং max width দেয় */
-        .container {
-            max-width: 1200px; /* ✏️ page-এর maximum width। বড় করতে চাইলে বাড়াও */
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Section: প্রতিটা section-এর উপরে-নিচে space */
-        .section {
-            padding: 8rem 2rem; /* ✏️ section-এর উপরে-নিচে space। কমাতে চাইলে কমাও */
-        }
-
-        /* Section Title: প্রতিটা section-এর বড় heading */
-        .section-title {
-            font-family: 'Syne', sans-serif; /* ✏️ heading font */
-            /* clamp(min, preferred, max): screen size অনুযায়ী font size বদলায়
-               2rem = mobile, 8vw = tablet, 4rem = desktop */
-            font-size: clamp(2rem, 8vw, 4rem);
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
-            line-height: 1.1;
-        }
-
-        /* Section Subtitle: heading-এর নিচের ছোট লেখা */
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: clamp(1rem, 2vw, 1.2rem);
-            margin-bottom: 4rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.7;
-        }
-
-        /* =====================================================
-           🧭 NAVBAR (উপরের navigation bar)
-           ===================================================== */
-        nav {
-            position: fixed;    /* page scroll করলেও উপরে fixed থাকবে */
-            top: 0;
-            left: 0;
-            right: 0;
-            /* ✏️ NAVBAR BACKGROUND COLOR:
-               rgba(248, 247, 244, 0.7) মানে off-white রং, 70% transparent
-               পুরো সাদা চাইলে: background: white; */
-            background: rgba(248, 247, 244, 0.7);
-            backdrop-filter: blur(20px); /* glass effect */
-            border-bottom: 1px solid rgba(232, 230, 224, 0.3);
-            z-index: 1000; /* সব কিছুর উপরে থাকবে */
-            padding: 1rem 2rem;
-            transition: all 0.3s ease;
-        }
-
-        /* Scroll করলে navbar আরো solid হয়ে যায় */
-        nav.scrolled {
-            background: rgba(248, 247, 244, 0.95);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            padding: 0.8rem 2rem;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        /* Logo style */
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            text-decoration: none;
-            font-family: 'Syne', sans-serif;
-            font-size: 1.3rem; /* ✏️ logo text size */
-            font-weight: 800;
-            color: var(--text-primary);
-            letter-spacing: -0.5px;
-            transition: all 0.3s ease;
-        }
-
-        .logo:hover { transform: scale(1.05); }
-
-        /* "Axilo" অংশের রং — primary purple */
-        .logo span { color: var(--primary); }
-
-        .logo svg { width: 28px; height: 28px; }
-
-        /* Nav links (Services, Process, etc.) */
-        .nav-links {
-            display: flex;
-            gap: 3rem; /* ✏️ nav links-এর মধ্যে space */
-            list-style: none;
-            align-items: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-primary);
-            font-weight: 500;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        /* Hover করলে নিচে underline আসে */
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -6px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after { width: 100%; }
-        .nav-links a:hover { color: var(--primary); }
-
-        /* "Get Free Audit" button in navbar */
-        .btn-nav {
-            /* ✏️ NAVBAR BUTTON COLOR: gradient বদলাতে চাইলে এখানে */
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-mid) 100%);
-            color: white;
-            padding: 0.7rem 1.4rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(83, 74, 183, 0.2);
-        }
-
-        .btn-nav:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(83, 74, 183, 0.35);
-        }
-
-        /* =====================================================
-           🦸 HERO SECTION (প্রথম বড় section — সবচেয়ে গুরুত্বপূর্ণ)
-           ===================================================== */
-        .hero {
-            margin-top: 60px; /* navbar-এর height-এর সমান */
-            padding: 10rem 2rem;
-            min-height: calc(100vh - 60px); /* পুরো screen জুড়ে */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            /* ✏️ HERO BACKGROUND COLOR: এটা dark section-এর রং
-               পুরো কালো চাইলে: #000000
-               গাঢ় নীল চাইলে: #0a0a2e */
-            background: var(--deep-black);
-        }
-
-        /* Hero-এর ডান দিকের floating orb (glowing circle) */
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -30%;
-            right: -15%;
-            width: 600px;
-            height: 600px;
-            /* ✏️ ORB COLOR: rgba(83, 74, 183, 0.25) মানে primary color, 25% opacity
-               বেশি উজ্জ্বল চাইলে 0.25 বাড়িয়ে 0.4 করো */
-            background: radial-gradient(circle, rgba(83, 74, 183, 0.25) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: floatOrb1 12s ease-in-out infinite; /* ✏️ 12s = animation speed */
-            z-index: 0;
-        }
-
-        /* Hero-এর বাম দিকের floating orb */
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: -20%;
-            left: -10%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(127, 119, 221, 0.2) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: floatOrb2 14s ease-in-out infinite; /* ✏️ 14s = animation speed */
-            z-index: 0;
-        }
-
-        /* Noise texture (premium grain effect) */
-        .hero-noise {
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' result='noise' /%3E%3C/filter%3E%3Crect width='400' height='400' fill='%230D0D0F' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-            opacity: 0.5;
-            z-index: 0;
-        }
-
-        /* Hero content (text এবং buttons) */
-        .hero-content {
-            max-width: 1000px;
-            text-align: center;
-            position: relative;
-            z-index: 1; /* orb-এর উপরে থাকবে */
-            animation: fadeInUp 1s ease-out;
-        }
-
-        /* ✏️ HERO MAIN HEADLINE STYLE */
-        .hero h1 {
-            font-family: 'Syne', sans-serif;
-            /* clamp: mobile-এ 2.5rem, desktop-এ 5.5rem */
-            font-size: clamp(2.5rem, 8vw, 5.5rem);
-            font-weight: 800;
-            line-height: 1.05;
-            margin-bottom: 1.5rem;
-            letter-spacing: -2px;
-            /* Gradient text effect — animated color change */
-            background: linear-gradient(135deg, #ffffff 0%, var(--primary-accent) 50%, var(--primary-mid) 100%);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradientShift 4s ease infinite; /* ✏️ 4s = color change speed */
-        }
-
-        /* ✏️ HERO SUBHEADLINE STYLE */
-        .hero p {
-            font-size: clamp(1rem, 2.5vw, 1.3rem);
-            color: rgba(248, 247, 244, 0.7); /* ✏️ subheadline color — সাদার 70% */
-            margin-bottom: 2.5rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.7;
-        }
-
-        /* Hero buttons container */
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 3rem;
-        }
-
-        /* General button styles */
-        .btn {
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            cursor: pointer;
-            border: none;
-        }
-
-        /* ✏️ PRIMARY BUTTON (Get Free Audit) — প্রধান CTA button */
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-mid) 100%);
-            color: white;
-            box-shadow: 0 8px 30px rgba(83, 74, 183, 0.4);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(83, 74, 183, 0.5);
-        }
-
-        /* ✏️ SECONDARY BUTTON (See Our Work) — দ্বিতীয় button */
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            border: 1px solid rgba(248, 247, 244, 0.3);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(248, 247, 244, 0.1);
-            border-color: rgba(248, 247, 244, 0.6);
-        }
-
-        /* Trust badges (14-Day Delivery, etc.) */
-        .trust-badges {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 4rem;
-        }
-
-        /* ✏️ TRUST BADGE STYLE: প্রতিটা badge-এর style */
-        .badge {
-            background: rgba(83, 74, 183, 0.15);
-            border: 1px solid rgba(83, 74, 183, 0.3);
-            color: var(--primary-accent);
-            padding: 0.4rem 1rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        /* Stats section (50+ Automations, $2M+ Saved, etc.) */
-        .hero-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            max-width: 600px;
-            margin: 0 auto;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(248, 247, 244, 0.1);
-        }
-
-        .stat { text-align: center; }
-
-        /* ✏️ STAT NUMBER STYLE (50+, $2M+, 100%) */
-        .stat-value {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 800;
-            color: white;
-            display: block;
-        }
-
-        .stat-label {
-            color: rgba(248, 247, 244, 0.5);
-            font-size: 0.8rem;
-            margin-top: 0.25rem;
-        }
-
-        /* =====================================================
-           😰 PROBLEMS SECTION (ব্যবসার সমস্যাগুলো দেখানো)
-           ===================================================== */
-        .problems {
-            /* ✏️ PROBLEMS SECTION BACKGROUND: dark section */
-            background: #0f0f1a;
-        }
-
-        /* Problems section-এর title color (dark background-এ সাদা) */
-        .problems .section-title { color: white; }
-        .problems .section-subtitle { color: rgba(248, 247, 244, 0.6); }
-
-        /* Problems grid — 5টা card পাশাপাশি */
-        .problems-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-        }
-
-        /* ✏️ PROBLEM CARD STYLE */
-        .problem-card {
-            background: rgba(83, 74, 183, 0.08);
-            border: 1px solid rgba(83, 74, 183, 0.2);
-            border-radius: 16px;
-            padding: 2rem;
-            transition: all 0.3s ease;
-            opacity: 0; /* শুরুতে invisible, scroll করলে দেখা যাবে */
-        }
-
-        .problem-card:hover {
-            transform: translateY(-8px); /* hover করলে উপরে উঠে */
-            border-color: var(--primary);
-            background: rgba(83, 74, 183, 0.15);
-        }
-
-        /* Problem card-এর emoji icon */
-        .problem-icon {
-            font-size: 2.5rem; /* ✏️ icon size */
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        /* ✏️ PROBLEM CARD TITLE */
-        .problem-title {
-            font-family: 'Syne', sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 0.75rem;
-        }
-
-        /* ✏️ PROBLEM CARD DESCRIPTION */
-        .problem-description {
-            color: rgba(248, 247, 244, 0.6);
-            font-size: 0.9rem;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        /* ✏️ PROBLEM COST (8hrs/week wasted, etc.) */
-        .problem-cost {
-            color: #ff6b6b; /* লাল রং — সমস্যা বোঝাতে */
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        /* =====================================================
-           💼 SERVICES SECTION (pricing packages)
-           ===================================================== */
-        .services {
-            background: var(--off-white); /* ✏️ services section background */
-        }
-
-        /* 3টা service card পাশাপাশি */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            align-items: start;
-        }
-
-        /* ✏️ SERVICE CARD BASE STYLE */
-        .service-card {
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 2.5rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            opacity: 0;
-        }
-
-        /* Card-এর উপরে colored border line */
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--primary-mid));
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .service-card:hover::before { transform: scaleX(1); }
-
-        .service-card:hover {
-            transform: translateY(-8px); /* hover করলে উপরে উঠে */
-            box-shadow: 0 30px 60px rgba(83, 74, 183, 0.15);
-            border-color: var(--primary);
-        }
-
-        /* ✏️ POPULAR CARD (Growth package) — highlighted style */
-        .service-card.popular {
-            border-color: var(--primary);
-            border-width: 2px;
-            transform: scale(1.02); /* একটু বড় */
-            box-shadow: 0 20px 50px rgba(83, 74, 183, 0.2);
-        }
-
-        .service-card.popular:hover {
-            transform: scale(1.02) translateY(-8px);
-        }
-
-        /* "Most Popular" badge */
-        .popular-badge {
-            position: absolute;
-            top: 1.5rem; right: 1.5rem;
-            background: var(--primary);
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 50px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        /* ✏️ PACKAGE NAME (Starter, Growth, Agency) */
-        .service-name {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-        }
-
-        /* ✏️ PACKAGE PRICE ($300-$500, etc.) */
-        .service-price {
-            font-family: 'Syne', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        /* ✏️ PACKAGE DESCRIPTION */
-        .service-description {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        /* Feature list container */
-        .service-features { margin-bottom: 2rem; }
-
-        /* ✏️ EACH FEATURE ITEM (1 Automated Workflow, etc.) */
-        .feature {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.5rem 0;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            border-bottom: 1px solid rgba(232, 230, 224, 0.5);
-        }
-
-        /* Checkmark icon before each feature */
-        .feature::before {
-            content: '✓';
-            color: var(--primary);
-            font-weight: 700;
-            flex-shrink: 0;
-        }
-
-        /* ✏️ SERVICE CTA BUTTON (Start Automating, Boost My Growth, etc.) */
-        .service-cta {
-            width: 100%;
-            padding: 1rem;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-mid) 100%);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .service-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(83, 74, 183, 0.3);
-        }
-
-        /* =====================================================
-           ⚙️ PROCESS SECTION (Discovery → Build → Deploy)
-           ===================================================== */
-        .process {
-            background: white; /* ✏️ process section background */
-        }
-
-        /* 3টা step পাশাপাশি */
-        .process-timeline {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            position: relative;
-        }
-
-        /* ✏️ PROCESS STEP CARD */
-        .process-step {
-            text-align: center;
-            padding: 2.5rem 2rem;
-            background: var(--off-white);
-            border-radius: 20px;
-            border: 1px solid var(--border);
-            transition: all 0.3s ease;
-            opacity: 0;
-        }
-
-        .process-step:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(83, 74, 183, 0.1);
-            border-color: var(--primary);
-        }
-
-        /* ✏️ STEP NUMBER (01, 02, 03) */
-        .step-number {
-            font-family: 'Syne', sans-serif;
-            font-size: 4rem;
-            font-weight: 800;
-            color: var(--primary-light);
-            display: block;
-            line-height: 1;
-            margin-bottom: 1rem;
-        }
-
-        /* Step emoji icon */
-        .step-icon {
-            font-size: 2.5rem; /* ✏️ step icon size */
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        /* ✏️ STEP TITLE (Uncover Opportunities, etc.) */
-        .step-title {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 0.75rem;
-        }
-
-        /* ✏️ STEP DESCRIPTION */
-        .step-description {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            line-height: 1.7;
-            margin-bottom: 1rem;
-        }
-
-        /* ✏️ STEP DAYS (Day 1-2, Day 3-10, etc.) */
-        .step-days {
-            display: inline-block;
-            background: var(--primary-light);
-            color: var(--primary-dark);
-            padding: 0.3rem 0.8rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        /* =====================================================
-           📊 RESULTS SECTION (Case Studies)
-           ===================================================== */
-        .results {
-            background: var(--off-white); /* ✏️ results section background */
-        }
-
-        /* 3টা result card পাশাপাশি */
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        /* ✏️ RESULT CARD STYLE */
-        .result-card {
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 2rem;
-            transition: all 0.3s ease;
-            opacity: 0;
-        }
-
-        .result-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(83, 74, 183, 0.1);
-        }
-
-        /* Industry tag (E-commerce, Real Estate, SaaS) */
-        .result-tag {
-            display: inline-block;
-            background: var(--primary-light);
-            color: var(--primary-dark);
-            padding: 0.3rem 0.8rem;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-        }
-
-        .result-icon {
-            font-size: 2.5rem; /* ✏️ result icon size */
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        /* ✏️ RESULT TITLE (E-commerce Brand, etc.) */
-        .result-title {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 0.75rem;
-        }
-
-        /* ✏️ RESULT METRICS (Saved 20hrs/week, etc.) */
-        .result-metrics {
-            color: var(--primary);
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-            padding: 0.5rem;
-            background: var(--primary-light);
-            border-radius: 6px;
-        }
-
-        /* ✏️ RESULT DESCRIPTION */
-        .result-description {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
-        /* =====================================================
-           💬 TESTIMONIALS SECTION (Client reviews)
-           ===================================================== */
-        .testimonials {
-            background: white; /* ✏️ testimonials section background */
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        /* ✏️ TESTIMONIAL CARD STYLE */
-        .testimonial-card {
-            background: var(--off-white);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 2rem;
-            transition: all 0.3s ease;
-            opacity: 0;
-        }
-
-        .testimonial-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(83, 74, 183, 0.1);
-        }
-
-        /* ✏️ STAR RATING COLOR */
-        .testimonial-stars {
-            color: #f59e0b; /* সোনালী রং — star rating */
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-        }
-
-        /* ✏️ TESTIMONIAL QUOTE TEXT */
-        .testimonial-quote {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.8;
-            font-style: italic;
-            margin-bottom: 1.5rem;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        /* ✏️ AUTHOR AVATAR (initials circle) */
-        .author-avatar {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--primary-mid));
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.9rem;
-            flex-shrink: 0;
-        }
-
-        /* ✏️ AUTHOR NAME */
-        .author-name {
-            font-weight: 700;
-            color: var(--text-primary);
-            font-size: 0.95rem;
-        }
-
-        /* ✏️ AUTHOR COMPANY */
-        .author-company {
-            color: var(--text-tertiary);
-            font-size: 0.85rem;
-        }
-
-        /* =====================================================
-           🏆 WHY US SECTION (GoAxilo-এর সুবিধাগুলো)
-           ===================================================== */
-        .why-us {
-            background: var(--off-white); /* ✏️ why us section background */
-        }
-
-        .why-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-        }
-
-        /* ✏️ WHY CARD STYLE */
-        .why-card {
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.3s ease;
-            opacity: 0;
-        }
-
-        .why-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(83, 74, 183, 0.1);
-            border-color: var(--primary);
-        }
-
-        .why-icon {
-            font-size: 2.5rem; /* ✏️ why card icon size */
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        /* ✏️ WHY CARD TITLE */
-        .why-title {
-            font-family: 'Syne', sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 0.5rem;
-        }
-
-        /* ✏️ WHY CARD DESCRIPTION */
-        .why-description {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
-        /* =====================================================
-           👤 ABOUT SECTION (Founder এবং GoAxilo story)
-           ===================================================== */
-        .about {
-            background: white; /* ✏️ about section background */
-        }
-
-        .about-content {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        /* ✏️ ABOUT TEXT PARAGRAPH */
-        .about-text {
-            font-size: 1.05rem;
-            color: var(--text-secondary);
-            line-height: 1.9;
-            margin-bottom: 1.5rem;
-        }
-
-        /* Highlighted text (Saiful Islam Shah, Bangladesh-based) */
-        .about-highlight {
-            color: var(--primary);
-            font-weight: 700;
-        }
-
-        /* =====================================================
-           📝 BLOG SECTION (Article previews)
-           ===================================================== */
-        .blog {
-            background: var(--off-white); /* ✏️ blog section background */
-        }
-
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        /* ✏️ BLOG CARD STYLE */
-        .blog-card {
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            opacity: 0;
-        }
-
-        .blog-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(83, 74, 183, 0.1);
-        }
-
-        /* Blog card header (colored area with emoji) */
-        .blog-header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-mid) 100%);
-            height: 180px; /* ✏️ blog card header height */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 2.5rem; /* ✏️ blog emoji size */
-        }
-
-        .blog-content { padding: 2rem; }
-
-        /* Blog category tag */
-        .blog-tag {
-            display: inline-block;
-            background: var(--primary-light);
-            color: var(--primary-dark);
-            padding: 0.3rem 0.8rem;
-            border-radius: 4px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-            text-transform: uppercase;
-        }
-
-        /* ✏️ BLOG TITLE */
-        .blog-title {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-            color: var(--text-primary);
-        }
-
-        /* Read time (5 min read, etc.) */
-        .blog-meta {
-            color: var(--text-tertiary);
-            font-size: 0.85rem;
-            margin-bottom: 1rem;
-        }
-
-        /* "Read More →" link */
-        .blog-link {
-            color: var(--primary);
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .blog-link:hover { color: var(--primary-dark); }
-
-        /* =====================================================
-           ❓ FAQ SECTION (Frequently Asked Questions)
-           ===================================================== */
-        .faq {
-            background: white; /* ✏️ faq section background */
-        }
-
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
-            margin-top: 3rem;
-        }
-
-        /* ✏️ FAQ ITEM (প্রতিটা question-answer pair) */
-        .faq-item {
-            background: var(--off-white);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            opacity: 0;
-        }
-
-        /* FAQ question button */
-        .faq-question {
-            background: transparent;
-            border: none;
-            width: 100%;
-            padding: 1.5rem; /* ✏️ question padding */
-            text-align: left;
-            font-family: 'Syne', sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-
-        .faq-question:hover { color: var(--primary); }
-
-        /* Arrow icon (▼) — click করলে ঘুরে যায় */
-        .faq-toggle {
-            font-size: 1.3rem;
-            transition: transform 0.3s ease;
-            flex-shrink: 0;
-        }
-
-        .faq-question.active .faq-toggle { transform: rotate(180deg); }
-
-        /* FAQ answer — শুরুতে hidden, click করলে দেখা যায় */
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-            padding: 0 1.5rem;
-        }
-
-        .faq-answer.active {
-            max-height: 500px; /* ✏️ answer-এর max height */
-            padding: 0 1.5rem 1.5rem 1.5rem;
-        }
-
-        /* ✏️ FAQ ANSWER TEXT */
-        .faq-text {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        /* =====================================================
-           📬 CONTACT SECTION (Form এবং social links)
-           ===================================================== */
-        .contact {
-            /* ✏️ CONTACT SECTION BACKGROUND: dark section */
-            background: var(--deep-black);
-            color: white;
-        }
-
-        .contact .section-title,
-        .contact .section-subtitle { color: white; }
-
-        .contact .section-subtitle { color: rgba(248, 247, 244, 0.6); }
-
-        .contact-container {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        /* Scarcity badge ("Only 3 slots open") */
-        .scarcity-badge {
-            background: rgba(255, 107, 107, 0.15);
-            border: 1px solid rgba(255, 107, 107, 0.3);
-            color: #ff6b6b;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            text-align: center;
-            margin-bottom: 1rem;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        /* Guarantee badge */
-        .guarantee-badge {
-            background: rgba(83, 74, 183, 0.15);
-            border: 1px solid rgba(83, 74, 183, 0.3);
-            color: var(--primary-accent);
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            text-align: center;
-            margin-bottom: 2rem;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        /* Contact form */
-        .contact-form {
-            background: rgba(248, 247, 244, 0.05);
-            border: 1px solid rgba(248, 247, 244, 0.1);
-            border-radius: 16px;
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-        }
-
-        /* Form field group (label + input) */
-        .form-group { margin-bottom: 1.5rem; }
-
-        /* ✏️ FORM LABEL */
-        .form-group label {
-            display: block;
-            color: rgba(248, 247, 244, 0.8);
-            font-size: 0.9rem;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-        }
-
-        /* ✏️ FORM INPUT FIELDS */
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.9rem 1rem;
-            background: rgba(248, 247, 244, 0.08);
-            border: 1px solid rgba(248, 247, 244, 0.15);
-            border-radius: 8px;
-            color: white;
-            font-size: 0.95rem;
-            font-family: 'DM Sans', sans-serif;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            background: rgba(83, 74, 183, 0.1);
-        }
-
-        /* Placeholder text color */
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: rgba(248, 247, 244, 0.3);
-        }
-
-        /* Textarea (message field) */
-        .form-group textarea {
-            height: 120px; /* ✏️ message field height */
-            resize: vertical;
-        }
-
-        .form-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        /* ✏️ SUBMIT BUTTON (Send Message) */
-        .submit-btn {
-            flex: 1;
-            min-width: 150px;
-            padding: 1rem;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-mid) 100%);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(83, 74, 183, 0.4);
-        }
-
-        /* ✏️ WHATSAPP BUTTON
-           এখানে WhatsApp number change করতে হবে!
-           wa.me/880XXXXXXXXXX format-এ দাও */
-        .whatsapp-btn {
-            flex: 1;
-            min-width: 150px;
-            padding: 1rem;
-            background: #25D366; /* WhatsApp সবুজ রং */
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .whatsapp-btn:hover {
-            background: #128C7E;
-            transform: translateY(-2px);
-        }
-
-        /* Social links row */
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        /* ✏️ SOCIAL LINK BUTTON STYLE */
-        .social-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: rgba(83, 74, 183, 0.15);
-            border: 1px solid rgba(83, 74, 183, 0.3);
-            color: var(--primary-accent);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-
-        .social-link:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        /* =====================================================
-           🦶 FOOTER (সবার নিচে)
-           ===================================================== */
-        footer {
-            background: #080810; /* ✏️ footer background — সবচেয়ে গাঢ় */
-            padding: 4rem 2rem 2rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-section h3 {
-            font-family: 'Syne', sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: white;
-        }
-
-        .footer-logo-section {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        /* Footer logo */
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            font-family: 'Syne', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            color: white;
-        }
-
-        .footer-logo span { color: var(--primary); }
-
-        /* ✏️ FOOTER TAGLINE */
-        .footer-tagline {
-            color: rgba(248, 247, 244, 0.6);
-            font-size: 0.9rem;
-        }
-
-        /* Footer navigation links */
-        .footer-links {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .footer-links a {
-            color: rgba(248, 247, 244, 0.6);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary);
-            transform: translateX(5px);
-        }
-
-        /* Footer social icons */
-        .footer-socials {
-            display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-        }
-
-        /* ✏️ FOOTER SOCIAL ICON STYLE */
-        .footer-social-link {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: rgba(83, 74, 183, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-
-        .footer-social-link:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        /* ✏️ FOOTER COPYRIGHT LINE */
-        .footer-bottom {
-            border-top: 1px solid rgba(248, 247, 244, 0.1);
-            padding-top: 1.5rem;
-            text-align: center;
-            color: rgba(248, 247, 244, 0.5);
-            font-size: 0.8rem;
-        }
-
-        /* =====================================================
-           📌 STICKY CTA BUTTON (scroll করলে নিচে দেখা যায়)
-           ===================================================== */
-        .sticky-cta {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-mid) 100%);
-            color: white;
-            padding: 0.9rem 1.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(83, 74, 183, 0.3);
-            z-index: 999;
-            opacity: 0; /* শুরুতে invisible */
-            transform: translateY(100px);
-        }
-
-        /* Scroll করলে দেখা যাবে */
-        .sticky-cta.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .sticky-cta:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(83, 74, 183, 0.4);
-        }
-
-        /* =====================================================
-           📱 RESPONSIVE DESIGN (Mobile এবং Tablet)
-           max-width: 768px মানে screen 768px-এর ছোট হলে এই styles apply হবে
-           ===================================================== */
-        @media (max-width: 768px) {
-            .section { padding: 5rem 1.5rem; }
-            .section-title { font-size: 2rem; }
-            .section-subtitle { font-size: 0.95rem; margin-bottom: 2.5rem; }
-            .nav-links { gap: 1.5rem; font-size: 0.8rem; }
-            .hero { padding: 5rem 1.5rem; margin-top: 60px; }
-            .hero h1 { font-size: 2.5rem; }
-            .hero p { font-size: 1rem; }
-            .hero-buttons { gap: 1rem; }
-            .btn { padding: 0.8rem 1.8rem; font-size: 0.9rem; }
-            .trust-badges { gap: 1rem; }
-            .badge { font-size: 0.8rem; }
-            .problems-grid, .services-grid, .process-timeline,
-            .why-grid, .results-grid, .testimonials-grid, .blog-grid {
-                grid-template-columns: 1fr; /* mobile-এ সব card একটা column-এ */
-            }
-            .service-card.popular { transform: scale(1); }
-            .contact-form { padding: 2rem; }
-            .form-buttons { flex-direction: column; }
-            .submit-btn, .whatsapp-btn { width: 100%; min-width: auto; }
-            .footer-content { grid-template-columns: 1fr; gap: 1.5rem; }
-            .sticky-cta { bottom: 1rem; right: 1rem; padding: 0.7rem 1rem; font-size: 0.7rem; }
-        }
-
-        /* Extra small screens (400px-এর ছোট) */
-        @media (max-width: 480px) {
-            .trust-badges { gap: 0.75rem; font-size: 0.7rem; }
-            .logo { font-size: 1rem; gap: 0.4rem; }
-            .logo svg { width: 22px; height: 22px; }
-            .hero h1 { font-size: 1.8rem; }
-            .hero p { font-size: 0.9rem; }
-            .hero-stats { grid-template-columns: 1fr; }
-            .stat-value { font-size: 2rem; }
-            .section-title { font-size: 1.5rem; }
-            .problem-icon, .step-icon, .why-icon, .result-icon { font-size: 2rem; }
-            .service-name { font-size: 1.3rem; }
-            .service-price { font-size: 1.8rem; }
-            .step-number { font-size: 2.5rem; }
-            .blog-header { height: 140px; font-size: 2rem; }
-            .faq-question { padding: 1rem; font-size: 0.9rem; }
-            .contact-form { padding: 1.5rem; }
-            .sticky-cta { bottom: 1rem; right: 1rem; padding: 0.7rem 1rem; font-size: 0.7rem; }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GoAxilo — AI Automation Agency | Automate Everything. Scale Anywhere.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =====================================================
+       🎨 DESIGN TOKENS — রং বদলাতে শুধু এখানে আসো
+       ===================================================== */
+    :root {
+      /* --- BACKGROUNDS --- */
+      --bg:          #07070F;   /* সবচেয়ে গভীর কালো */
+      --bg-2:        #0C0C18;   /* section alternate */
+      --surface:     #10101E;   /* card background */
+      --surface-2:   #16162A;   /* elevated cards */
+
+      /* --- BRAND PURPLE --- */
+      --p:           #7C5CFC;   /* primary purple */
+      --p-light:     #A98BFD;   /* light purple */
+      --p-dim:       #3D2D8A;   /* dim purple */
+      --p-deep:      #13102B;   /* very dark purple bg */
+      --p-glow:      rgba(124,92,252,0.35);
+
+      /* --- ACCENT --- */
+      --green:       #00F5C0;   /* accent teal-green */
+      --red:         #FF5E7D;   /* problem/pain color */
+
+      /* --- TEXT --- */
+      --text:        #E8E4FF;   /* primary text */
+      --muted:       #6B6888;   /* secondary text */
+      --muted-2:     #3D3B55;   /* very muted */
+
+      /* --- BORDERS --- */
+      --border:      rgba(255,255,255,0.06);
+      --border-glow: rgba(124,92,252,0.3);
+
+      /* --- FONTS --- */
+      --font-head:  'Syne', sans-serif;
+      --font-body:  'DM Sans', sans-serif;
+      --font-mono:  'DM Mono', monospace;
+
+      /* --- RADIUS --- */
+      --r:    16px;
+      --r-sm: 10px;
+    }
+
+    /* =====================================================
+       RESET
+       ===================================================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* =====================================================
+       CUSTOM CURSOR — purple dot follows mouse
+       ===================================================== */
+    .cursor {
+      width: 9px; height: 9px;
+      background: var(--p);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.12s ease;
+      mix-blend-mode: screen;
+    }
+    .cursor-ring {
+      width: 34px; height: 34px;
+      border: 1px solid rgba(124,92,252,0.45);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: width 0.2s, height 0.2s, border-color 0.2s;
+    }
+    body:has(a:hover) .cursor-ring,
+    body:has(button:hover) .cursor-ring {
+      width: 48px; height: 48px;
+      border-color: var(--p);
+    }
+
+    /* =====================================================
+       NOISE GRAIN OVERLAY — premium texture
+       ===================================================== */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      background-size: 200px;
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* =====================================================
+       ANIMATIONS
+       ===================================================== */
+    @keyframes fadeUp    { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeIn    { from { opacity:0; } to { opacity:1; } }
+    @keyframes floatY    { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-18px)} }
+    @keyframes floatOrb1 { 0%,100%{transform:translate(0,0)} 33%{transform:translate(30px,-40px)} 66%{transform:translate(-20px,25px)} }
+    @keyframes floatOrb2 { 0%,100%{transform:translate(0,0)} 33%{transform:translate(-35px,35px)} 66%{transform:translate(25px,-25px)} }
+    @keyframes gradShift { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+    @keyframes pulseGlow { 0%,100%{box-shadow:0 0 0 0 rgba(124,92,252,0.5)} 50%{box-shadow:0 0 0 10px rgba(124,92,252,0)} }
+    @keyframes spin      { to{transform:rotate(360deg)} }
+    @keyframes blink     { 0%,100%{opacity:1} 50%{opacity:0} }
+    @keyframes scanline  { 0%{top:-5%} 100%{top:105%} }
+
+    /* Nodes flowing in automation diagram */
+    @keyframes flowRight { 0%{stroke-dashoffset:200} 100%{stroke-dashoffset:0} }
+    @keyframes nodeFloat { 0%,100%{transform:translateY(0px)} 50%{transform:translateY(-6px)} }
+    @keyframes ping      { 0%{transform:scale(1);opacity:0.8} 100%{transform:scale(2.5);opacity:0} }
+
+    /* =====================================================
+       LAYOUT
+       ===================================================== */
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    .section { padding: 8rem 2rem; }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--p-light);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-label::after {
+      content: '';
+      height: 1px;
+      width: 40px;
+      background: var(--p-dim);
+    }
+
+    .section-title {
+      font-family: var(--font-head);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 1.25rem;
+      color: var(--text);
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+    }
+    .section-subtitle {
+      text-align: center;
+      color: var(--muted);
+      font-size: clamp(0.95rem, 2vw, 1.1rem);
+      margin-bottom: 4rem;
+      max-width: 640px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.75;
+    }
+
+    /* Section divider line */
+    .section-divider {
+      height: 1px;
+      background: var(--border);
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    /* =====================================================
+       NAVBAR
+       ===================================================== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 0 2rem;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      background: rgba(7,7,15,0.75);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+    nav.scrolled {
+      background: rgba(7,7,15,0.95);
+      box-shadow: 0 4px 32px rgba(0,0,0,0.5);
+    }
+    .nav-container {
+      max-width: 1180px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Logo */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      font-family: var(--font-head);
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.03em;
+      transition: opacity 0.2s;
+    }
+    .logo:hover { opacity: 0.85; }
+    .logo span { color: var(--p); }
+    .logo svg { width: 28px; height: 28px; }
+
+    /* Nav links */
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+      align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 500;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 1px;
+      background: var(--p);
+      transition: width 0.25s;
+    }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* Navbar CTA button */
+    .btn-nav {
+      background: var(--p);
+      color: #fff;
+      padding: 0.6rem 1.4rem;
+      border-radius: var(--r-sm);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.82rem;
+      transition: all 0.2s;
+      border: 1px solid var(--p);
+    }
+    .btn-nav:hover {
+      background: transparent;
+      color: var(--p);
+    }
+
+    /* =====================================================
+       HERO SECTION — the most important part
+       Full dark with automation node animation
+       ===================================================== */
+    .hero {
+      min-height: 100vh;
+      margin-top: 68px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 4rem;
+      padding: 6rem 2rem;
+      max-width: 1180px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+    }
+
+    /* Purple glow orb behind hero */
+    .hero-orb-1 {
+      position: fixed;
+      top: -10%; right: -10%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(124,92,252,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+      filter: blur(60px);
+      animation: floatOrb1 14s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero-orb-2 {
+      position: fixed;
+      bottom: 0; left: -15%;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(0,245,192,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+      filter: blur(80px);
+      animation: floatOrb2 18s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* LEFT: Text */
+    .hero-left {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Availability badge */
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(124,92,252,0.1);
+      border: 1px solid rgba(124,92,252,0.25);
+      border-radius: 999px;
+      padding: 7px 18px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--p-light);
+      letter-spacing: 0.06em;
+      margin-bottom: 2rem;
+      animation: fadeUp 0.6s ease 0.1s both;
+    }
+    .pulse-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulseGlow 2.5s infinite;
+    }
+
+    /* ✏️ MAIN HEADLINE */
+    .hero h1 {
+      font-family: var(--font-head);
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 800;
+      line-height: 1.0;
+      letter-spacing: -0.05em;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.7s ease 0.2s both;
+    }
+    /* Gradient animated text */
+    .hero h1 .grad {
+      background: linear-gradient(135deg, var(--p) 0%, var(--p-light) 40%, var(--green) 100%);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradShift 5s ease infinite;
+    }
+
+    /* ✏️ HERO SUBHEADLINE */
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: var(--muted);
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+      animation: fadeUp 0.7s ease 0.3s both;
+    }
+    .hero-sub strong { color: var(--text); }
+
+    /* Trust badges */
+    .trust-badges {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.7s ease 0.4s both;
+    }
+    .badge {
+      background: var(--p-deep);
+      border: 1px solid rgba(124,92,252,0.2);
+      color: var(--p-light);
+      padding: 5px 14px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-family: var(--font-mono);
+      letter-spacing: 0.04em;
+    }
+
+    /* CTA buttons */
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 3.5rem;
+      animation: fadeUp 0.7s ease 0.5s both;
+    }
+    .btn {
+      padding: 0.9rem 2rem;
+      border-radius: var(--r-sm);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.25s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      border: none;
+      font-family: var(--font-body);
+    }
+    /* ✏️ PRIMARY BUTTON */
+    .btn-primary {
+      background: var(--p);
+      color: #fff;
+      box-shadow: 0 0 40px rgba(124,92,252,0.35);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 60px rgba(124,92,252,0.55);
+    }
+    /* ✏️ SECONDARY BUTTON */
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover {
+      border-color: var(--p);
+      color: var(--p-light);
+    }
+
+    /* Stats */
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      animation: fadeUp 0.7s ease 0.6s both;
+    }
+    .stat-value {
+      font-family: var(--font-head);
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 800;
+      color: var(--text);
+      display: block;
+      letter-spacing: -0.04em;
+    }
+    .stat-label {
+      color: var(--muted);
+      font-size: 0.78rem;
+      margin-top: 3px;
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+    }
+
+    /* =====================================================
+       HERO RIGHT — Automation Flow Diagram Animation
+       This is the 10/10 visual element
+       ===================================================== */
+    .hero-visual {
+      position: relative;
+      z-index: 2;
+      animation: fadeIn 1s ease 0.5s both;
+    }
+
+    /* Main canvas for the automation flow */
+    .automation-canvas {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Scanline effect over canvas */
+    .automation-canvas::before {
+      content: '';
+      position: absolute;
+      left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(124,92,252,0.4), transparent);
+      animation: scanline 4s linear infinite;
+      z-index: 3;
+    }
+
+    /* Canvas header bar (like a terminal/window) */
+    .canvas-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .canvas-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .canvas-title {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      margin-left: 6px;
+    }
+    /* Live indicator */
+    .canvas-live {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--green);
+      letter-spacing: 0.08em;
+    }
+    .live-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulseGlow 1.5s infinite;
+    }
+
+    /* Flow nodes container */
+    .flow-nodes {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    /* Single flow row (trigger → action → result) */
+    .flow-row {
+      display: grid;
+      grid-template-columns: 1fr 28px 1fr 28px 1fr;
+      align-items: center;
+      gap: 0;
+      animation: fadeUp 0.5s ease both;
+    }
+    .flow-row:nth-child(1) { animation-delay: 0.7s; }
+    .flow-row:nth-child(2) { animation-delay: 0.9s; }
+    .flow-row:nth-child(3) { animation-delay: 1.1s; }
+    .flow-row:nth-child(4) { animation-delay: 1.3s; }
+
+    /* Individual node box */
+    .flow-node {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      padding: 0.6rem 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: border-color 0.3s;
+      position: relative;
+    }
+    .flow-node:hover { border-color: var(--p); }
+
+    /* Ping animation on active nodes */
+    .flow-node.active { border-color: var(--p-dim); }
+    .flow-node.active::after {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: var(--r-sm);
+      border: 1px solid var(--p);
+      animation: ping 2s ease-out infinite;
+    }
+
+    .node-icon {
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    .node-text { flex: 1; }
+    .node-label {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      color: var(--p-light);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: block;
+    }
+    .node-name {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text);
+      display: block;
+      margin-top: 1px;
+    }
+
+    /* Status dot on node */
+    .node-status {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .status-green { background: var(--green); animation: pulseGlow 2s infinite; }
+    .status-purple { background: var(--p); animation: pulseGlow 2.5s infinite; }
+    .status-amber  { background: #F0C070; }
+
+    /* Arrow connector between nodes */
+    .flow-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--p-dim);
+      font-size: 0.8rem;
+      position: relative;
+    }
+    /* Animated line through arrow */
+    .flow-arrow::before {
+      content: '';
+      position: absolute;
+      left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, var(--p-dim), var(--p));
+      animation: flowRight 1.5s linear infinite;
+      background-size: 200px;
+    }
+
+    /* Mini stats inside canvas */
+    .canvas-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+      margin-top: 1.25rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+    .canvas-stat {
+      background: var(--p-deep);
+      border: 1px solid rgba(124,92,252,0.12);
+      border-radius: var(--r-sm);
+      padding: 0.6rem;
+      text-align: center;
+    }
+    .canvas-stat-val {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--p-light);
+      display: block;
+    }
+    .canvas-stat-key {
+      font-size: 0.62rem;
+      color: var(--muted);
+      margin-top: 2px;
+      display: block;
+      letter-spacing: 0.05em;
+    }
+
+    /* Floating badge above canvas */
+    .canvas-floating-badge {
+      position: absolute;
+      top: -14px;
+      right: 20px;
+      background: var(--green);
+      color: #000;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 999px;
+      letter-spacing: 0.06em;
+    }
+
+    /* =====================================================
+       PROBLEMS SECTION
+       ===================================================== */
+    .problems { background: var(--bg-2); }
+    .problems .section-title { color: var(--text); }
+    .problems .section-subtitle { color: var(--muted); }
+
+    .problems-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.25rem;
+    }
+    .problem-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 1.75rem;
+      transition: all 0.25s;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .problem-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .problem-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-glow);
+      background: var(--surface-2);
+    }
+    .problem-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+    .problem-title {
+      font-family: var(--font-head);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+    }
+    .problem-description { color: var(--muted); font-size: 0.85rem; line-height: 1.65; margin-bottom: 1rem; }
+    .problem-cost { color: var(--red); font-size: 0.8rem; font-weight: 600; font-family: var(--font-mono); }
+
+    /* =====================================================
+       SERVICES / PRICING
+       ===================================================== */
+    .services { background: var(--bg); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      align-items: start;
+    }
+    .service-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 2.5rem;
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+    }
+    .service-card.visible { opacity: 1; }
+    /* Top glow line on hover */
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--p), var(--green));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s ease;
+    }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-glow);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(124,92,252,0.08);
+    }
+
+    /* Popular badge */
+    .service-popular {
+      position: absolute;
+      top: 1.25rem; right: 1.25rem;
+      background: var(--p);
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      padding: 3px 10px;
+      border-radius: 999px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .service-name {
+      font-family: var(--font-head);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+    .service-price {
+      font-family: var(--font-mono);
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--p-light);
+      margin-bottom: 0.75rem;
+    }
+    .service-description { color: var(--muted); font-size: 0.88rem; margin-bottom: 1.5rem; line-height: 1.65; }
+    .service-divider { height: 1px; background: var(--border); margin-bottom: 1.5rem; }
+    .service-features { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2rem; }
+    .feature {
+      font-size: 0.88rem;
+      color: var(--muted);
+      padding-left: 1.5rem;
+      position: relative;
+    }
+    .feature::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--p);
+      font-size: 0.8rem;
+    }
+
+    .btn-service {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 0.85rem;
+      border-radius: var(--r-sm);
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.25s;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-family: var(--font-body);
+    }
+    .btn-service:hover { border-color: var(--p); color: var(--p-light); }
+    .btn-service.primary {
+      background: var(--p);
+      color: #fff;
+      border-color: var(--p);
+      box-shadow: 0 8px 30px rgba(124,92,252,0.3);
+    }
+    .btn-service.primary:hover {
+      background: transparent;
+      color: var(--p);
+    }
+
+    /* =====================================================
+       PROCESS SECTION
+       ===================================================== */
+    .process { background: var(--bg-2); }
+    .process-timeline {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      position: relative;
+    }
+    /* Connecting line between steps */
+    .process-timeline::before {
+      content: '';
+      position: absolute;
+      top: 2.5rem;
+      left: calc(16.66% + 1rem);
+      right: calc(16.66% + 1rem);
+      height: 1px;
+      background: linear-gradient(90deg, var(--p-dim), var(--p), var(--p-dim));
+    }
+    .process-step {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 2rem 1.75rem;
+      text-align: center;
+      transition: border-color 0.2s, transform 0.2s;
+      opacity: 0;
+    }
+    .process-step.visible { opacity: 1; }
+    .process-step:hover { border-color: var(--border-glow); transform: translateY(-4px); }
+
+    .step-number {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--p);
+      letter-spacing: 0.12em;
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+    .step-icon { font-size: 2rem; display: block; margin-bottom: 0.75rem; }
+    .step-title { font-family: var(--font-head); font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; }
+    .step-description { color: var(--muted); font-size: 0.85rem; line-height: 1.65; margin-bottom: 0.75rem; }
+    .step-days {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--green);
+      letter-spacing: 0.08em;
+      background: rgba(0,245,192,0.08);
+      padding: 3px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,245,192,0.15);
+    }
+
+    /* =====================================================
+       RESULTS SECTION
+       ===================================================== */
+    .results { background: var(--bg); }
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .result-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 2rem;
+      transition: all 0.25s;
+      opacity: 0;
+    }
+    .result-card.visible { opacity: 1; }
+    .result-card:hover { border-color: var(--border-glow); transform: translateY(-4px); }
+    .result-tag {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--p-light);
+      background: var(--p-deep);
+      border: 1px solid rgba(124,92,252,0.15);
+      padding: 3px 10px;
+      border-radius: 999px;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+    .result-icon { font-size: 2rem; display: block; margin-bottom: 0.75rem; }
+    .result-title { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; }
+    .result-metrics { font-family: var(--font-mono); font-size: 0.75rem; color: var(--green); margin-bottom: 0.75rem; letter-spacing: 0.04em; }
+    .result-description { color: var(--muted); font-size: 0.88rem; line-height: 1.65; }
+
+    /* =====================================================
+       TESTIMONIALS
+       ===================================================== */
+    .testimonials { background: var(--bg-2); }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .testimonial-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 2rem;
+      transition: all 0.25s;
+      opacity: 0;
+    }
+    .testimonial-card.visible { opacity: 1; }
+    .testimonial-card:hover { border-color: var(--border-glow); }
+    .testimonial-stars { color: var(--p-light); font-size: 0.9rem; margin-bottom: 1rem; letter-spacing: 3px; }
+    .testimonial-quote { color: var(--muted); font-size: 0.9rem; line-height: 1.75; margin-bottom: 1.5rem; font-style: italic; }
+    .testimonial-author { display: flex; align-items: center; gap: 0.75rem; }
+    .author-avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--p-deep);
+      border: 1px solid var(--p-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-head);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--p-light);
+      flex-shrink: 0;
+    }
+    .author-name { font-weight: 600; font-size: 0.88rem; color: var(--text); }
+    .author-company { font-size: 0.78rem; color: var(--muted); font-family: var(--font-mono); }
+
+    /* =====================================================
+       WHY US
+       ===================================================== */
+    .why-us { background: var(--bg); }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.25rem;
+    }
+    .why-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 1.75rem;
+      transition: all 0.25s;
+      opacity: 0;
+    }
+    .why-card.visible { opacity: 1; }
+    .why-card:hover { border-color: var(--border-glow); transform: translateY(-4px); }
+    .why-icon { font-size: 2rem; display: block; margin-bottom: 0.75rem; }
+    .why-title { font-family: var(--font-head); font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; }
+    .why-description { color: var(--muted); font-size: 0.85rem; line-height: 1.65; }
+
+    /* =====================================================
+       ABOUT SECTION
+       ===================================================== */
+    .about { background: var(--bg-2); }
+    .about-content { max-width: 720px; margin: 0 auto; }
+    .about-text {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.85;
+      margin-bottom: 1.25rem;
+      text-align: center;
+    }
+    .about-highlight {
+      color: var(--p-light);
+      font-weight: 600;
+    }
+    .about-highlight a {
+      color: var(--p-light);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* =====================================================
+       BLOG
+       ===================================================== */
+    .blog { background: var(--bg); }
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .blog-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      overflow: hidden;
+      transition: all 0.25s;
+      opacity: 0;
+    }
+    .blog-card.visible { opacity: 1; }
+    .blog-card:hover { border-color: var(--border-glow); transform: translateY(-4px); }
+    .blog-header {
+      background: var(--p-deep);
+      padding: 2.5rem;
+      font-size: 2.5rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .blog-content { padding: 1.5rem; }
+    .blog-tag {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--p-light);
+      margin-bottom: 0.6rem;
+    }
+    .blog-title { font-family: var(--font-head); font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 0.6rem; line-height: 1.4; }
+    .blog-meta { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); margin-bottom: 1rem; }
+    .blog-link { font-size: 0.82rem; color: var(--p); text-decoration: none; font-weight: 500; }
+    .blog-link:hover { color: var(--p-light); }
+
+    /* =====================================================
+       FAQ
+       ===================================================== */
+    .faq { background: var(--bg-2); }
+    .faq-container { max-width: 720px; margin: 0 auto; }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      opacity: 0;
+    }
+    .faq-item.visible { opacity: 1; }
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 1.5rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      color: var(--text);
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-align: left;
+      font-family: var(--font-body);
+      transition: color 0.2s;
+    }
+    .faq-question:hover { color: var(--p-light); }
+    .faq-toggle {
+      color: var(--p);
+      font-size: 0.75rem;
+      transition: transform 0.3s;
+      flex-shrink: 0;
+    }
+    .faq-question.active .faq-toggle { transform: rotate(180deg); }
+    .faq-answer { display: none; padding-bottom: 1.5rem; }
+    .faq-answer.active { display: block; }
+    .faq-text { color: var(--muted); font-size: 0.9rem; line-height: 1.75; }
+
+    /* =====================================================
+       CONTACT
+       ===================================================== */
+    .contact { background: var(--bg); }
+    .contact-container { max-width: 600px; margin: 0 auto; }
+
+    .scarcity-badge {
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--red);
+      background: rgba(255,94,125,0.08);
+      border: 1px solid rgba(255,94,125,0.2);
+      padding: 8px 20px;
+      border-radius: 999px;
+      margin-bottom: 0.75rem;
+      display: inline-block;
+      width: 100%;
+      letter-spacing: 0.04em;
+    }
+    .guarantee-badge {
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--green);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-form {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 2.5rem;
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+      opacity: 0;
+    }
+    .form-group.visible { opacity: 1; }
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-family: var(--font-mono);
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      padding: 0.85rem 1rem;
+      color: var(--text);
+      font-size: 0.9rem;
+      font-family: var(--font-body);
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: var(--p); }
+    .form-group textarea { min-height: 120px; resize: vertical; }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--muted-2); }
+
+    .form-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .submit-btn {
+      flex: 1;
+      padding: 0.9rem;
+      background: var(--p);
+      color: #fff;
+      border: none;
+      border-radius: var(--r-sm);
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s;
+      font-family: var(--font-body);
+      box-shadow: 0 8px 30px rgba(124,92,252,0.3);
+    }
+    .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(124,92,252,0.45); }
+
+    .whatsapp-btn {
+      padding: 0.9rem 1.5rem;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all 0.25s;
+    }
+    .whatsapp-btn:hover { border-color: #25D366; color: #25D366; }
+
+    .social-links { display: flex; justify-content: center; gap: 0.75rem; margin-top: 2rem; }
+    .social-link {
+      width: 42px; height: 42px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .social-link:hover { border-color: var(--p); color: var(--p-light); background: var(--p-deep); }
+
+    /* =====================================================
+       FOOTER
+       ===================================================== */
+    footer {
+      background: var(--bg-2);
+      border-top: 1px solid var(--border);
+      padding: 4rem 2rem 2rem;
+    }
+    .footer-content {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 3rem;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2rem;
+    }
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--font-head);
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--text);
+      text-decoration: none;
+      margin-bottom: 0.75rem;
+    }
+    .footer-logo span { color: var(--p); }
+    .footer-tagline { color: var(--muted); font-size: 0.88rem; line-height: 1.65; }
+    .footer-section h3 {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+    }
+    .footer-links { display: flex; flex-direction: column; gap: 0.6rem; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--p-light); }
+    .footer-socials { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+    .footer-social-link {
+      width: 36px; height: 36px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .footer-social-link:hover { border-color: var(--p); color: var(--p-light); }
+    .footer-bottom {
+      text-align: center;
+      max-width: 1180px;
+      margin: 0 auto;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--muted-2);
+      letter-spacing: 0.05em;
+    }
+
+    /* =====================================================
+       STICKY CTA
+       ===================================================== */
+    .sticky-cta {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--p);
+      color: #fff;
+      padding: 0.8rem 1.5rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      z-index: 500;
+      box-shadow: 0 8px 30px rgba(124,92,252,0.45);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .sticky-cta.show { transform: translateY(0); opacity: 1; }
+    .sticky-cta:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(124,92,252,0.6); }
+
+    /* =====================================================
+       RESPONSIVE
+       ===================================================== */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; gap: 3rem; }
+      .hero-visual { display: none; } /* hide diagram on mobile */
+      .process-timeline { grid-template-columns: 1fr; }
+      .process-timeline::before { display: none; }
+      .footer-content { grid-template-columns: 1fr; gap: 2rem; }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 600px) {
+      .hero-stats { grid-template-columns: 1fr; gap: 1rem; }
+      .canvas-stats { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- =====================================================
-         🧭 NAVBAR (উপরের navigation bar)
-         ✏️ এখানে nav links-এর text change করতে পারো
-         ✏️ "Get Free Audit" button-এর text change করতে পারো
-         ===================================================== -->
-    <nav id="navbar">
-        <div class="nav-container">
+  <!-- Custom cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
 
-            <!-- LOGO: "Go" + "Axilo" (Axilo অংশ purple রং-এ) -->
-            <a href="#" class="logo">
-                <!-- GoAxilo SVG Icon (triangle shape) -->
-                <svg width="28" height="28" viewBox="0 0 36 36" fill="none">
-                    <rect width="36" height="36" rx="9" fill="#EEEDFE"/>
-                    <path d="M10 26 L18 10 L26 26" stroke="#534AB7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                    <path d="M13 21 L23 21" stroke="#534AB7" stroke-width="2" stroke-linecap="round" fill="none"/>
-                    <circle cx="26" cy="26" r="2.5" fill="#7F77DD"/>
-                </svg>
-                Go<span>Axilo</span>  <!-- ✏️ Logo text change করতে পারো -->
-            </a>
+  <!-- Background glow orbs -->
+  <div class="hero-orb-1"></div>
+  <div class="hero-orb-2"></div>
 
-            <!-- NAV LINKS: ✏️ এখানে menu items change করো -->
-            <ul class="nav-links">
-                <li><a href="#services">Services</a></li>
-                <li><a href="#process">Process</a></li>
-                <li><a href="#results">Results</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <!-- ✏️ CTA BUTTON TEXT: "Get Free Audit" change করতে পারো -->
-                <li><a href="#contact" class="btn-nav">Get Free Audit</a></li>
-            </ul>
+  <!-- =====================================================
+       NAVBAR
+       ===================================================== -->
+  <nav id="navbar">
+    <div class="nav-container">
 
+      <!-- ✏️ LOGO: "Go" + "Axilo" (Axilo part is purple) -->
+      <a href="#hero" class="logo">
+        <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="36" height="36" rx="9" fill="#7C5CFC"/>
+          <path d="M10 26 L18 10 L26 26" stroke="#C4B0FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M13 21 L23 21" stroke="#C4B0FF" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <circle cx="26" cy="26" r="2.5" fill="#00F5C0"/>
+        </svg>
+        Go<span>Axilo</span>
+      </a>
+
+      <!-- ✏️ NAV LINKS: add/remove as needed -->
+      <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#results">Results</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#contact" class="btn-nav">Get Free Audit</a></li>
+      </ul>
+
+    </div>
+  </nav>
+
+  <!-- =====================================================
+       HERO SECTION
+       Left: headline + CTA | Right: Automation Flow Diagram
+       ===================================================== -->
+  <div style="background:var(--bg); padding-top:68px; position:relative; overflow:hidden;">
+  <section class="hero" id="hero">
+
+    <!-- LEFT: Text -->
+    <div class="hero-left">
+
+      <!-- Availability badge -->
+      <div class="hero-badge">
+        <div class="pulse-dot"></div>
+        AI-First Automation Agency
+      </div>
+
+      <!-- ✏️ MAIN HEADLINE — change text here -->
+      <h1>Automate<br /><span class="grad">everything.</span><br />Scale anywhere.</h1>
+
+      <!-- ✏️ SUBHEADLINE -->
+      <p class="hero-sub">
+        We build <strong>AI agents and automation systems</strong> that eliminate manual work, save your team hundreds of hours, and scale your business without hiring.
+      </p>
+
+      <!-- Trust badges — ✏️ change text -->
+      <div class="trust-badges">
+        <div class="badge">14-Day Delivery</div>
+        <div class="badge">30-Day Support</div>
+        <div class="badge">AI-First Agency</div>
+        <div class="badge">No Lock-in</div>
+      </div>
+
+      <!-- CTA Buttons — ✏️ change href and text -->
+      <div class="hero-buttons">
+        <a href="#contact" class="btn btn-primary">Get Free Audit →</a>
+        <a href="#services" class="btn btn-secondary">See Our Work</a>
+      </div>
+
+      <!-- Stats — ✏️ change data-target numbers -->
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-value" data-target="50">0</span>
+          <div class="stat-label">Automations Built</div>
         </div>
-    </nav>
-
-    <!-- =====================================================
-         🦸 HERO SECTION (প্রথম বড় section)
-         ✏️ এখানে main headline, subheadline, buttons change করো
-         ===================================================== -->
-    <section class="hero" id="hero">
-        <!-- Noise texture overlay (premium grain effect) — change করতে হবে না -->
-        <div class="hero-noise"></div>
-
-        <div class="hero-content">
-
-            <!-- ✏️ MAIN HEADLINE: এটাই সবচেয়ে বড় লেখা
-                 এই text change করলে hero-র মূল message বদলে যাবে -->
-            <h1>Automate everything. Scale anywhere.</h1>
-
-            <!-- ✏️ SUBHEADLINE: headline-এর নিচের ব্যাখ্যা -->
-            <p>We build AI agents and automation systems that eliminate manual work and scale your business.</p>
-
-            <!-- BUTTONS: দুইটা CTA button -->
-            <div class="hero-buttons">
-                <!-- ✏️ PRIMARY CTA: প্রধান button — text এবং link change করো -->
-                <a href="#contact" class="btn btn-primary">Get Free Audit →</a>
-                <!-- ✏️ SECONDARY CTA: দ্বিতীয় button -->
-                <a href="#services" class="btn btn-secondary">See Our Work</a>
-            </div>
-
-            <!-- TRUST BADGES: ✏️ এখানে badge text change করো -->
-            <div class="trust-badges">
-                <div class="badge">14-Day Delivery</div>
-                <div class="badge">30-Day Support</div>
-                <div class="badge">AI-First Agency</div>
-                <div class="badge">No Lock-in</div>
-            </div>
-
-            <!-- STATS: animated counters
-                 data-target="50" মানে 0 থেকে 50 পর্যন্ত count করবে
-                 ✏️ number change করতে data-target-এর value বদলাও -->
-            <div class="hero-stats">
-                <div class="stat">
-                    <!-- ✏️ STAT 1: Automations Built -->
-                    <span class="stat-value" data-target="50">0</span>
-                    <div class="stat-label">Automations Built</div>
-                </div>
-                <div class="stat">
-                    <!-- ✏️ STAT 2: Saved for Clients ($2,000,000 = $2M) -->
-                    <span class="stat-value" data-target="2000000">$0</span>
-                    <div class="stat-label">Saved for Clients</div>
-                </div>
-                <div class="stat">
-                    <!-- ✏️ STAT 3: Client Satisfaction % -->
-                    <span class="stat-value" data-target="100">0</span>
-                    <div class="stat-label">% Client Satisfaction</div>
-                </div>
-            </div>
-
+        <div class="stat">
+          <span class="stat-value" data-target="2000000">$0</span>
+          <div class="stat-label">Saved for Clients</div>
         </div>
-    </section>
-
-    <!-- =====================================================
-         😰 PROBLEMS SECTION (ব্যবসার সমস্যাগুলো)
-         ✏️ এখানে problem card-এর title, description, cost change করো
-         ===================================================== -->
-    <section class="problems section" id="problems">
-        <div class="container">
-            <!-- ✏️ PROBLEMS SECTION TITLE -->
-            <h2 class="section-title">Your team is drowning in manual work.</h2>
-            <!-- ✏️ PROBLEMS SECTION SUBTITLE -->
-            <p class="section-subtitle">It's time to reclaim your time and focus on growth. GoAxilo transforms operational bottlenecks into automated advantages.</p>
-
-            <div class="problems-grid">
-
-                <!-- ✏️ PROBLEM CARD 1: Lead Tracking -->
-                <div class="problem-card">
-                    <span class="problem-icon">📧</span>  <!-- ✏️ emoji change করো -->
-                    <h3 class="problem-title">Lead Tracking & Follow-up</h3>  <!-- ✏️ title -->
-                    <p class="problem-description">Manual lead management leads to missed opportunities and slow conversions.</p>  <!-- ✏️ description -->
-                    <p class="problem-cost">💔 8hrs/week wasted</p>  <!-- ✏️ cost stat -->
-                </div>
-
-                <!-- ✏️ PROBLEM CARD 2: Slow Responses -->
-                <div class="problem-card">
-                    <span class="problem-icon">💬</span>
-                    <h3 class="problem-title">Slow Customer Responses</h3>
-                    <p class="problem-description">Delayed replies frustrate customers and damage your brand reputation.</p>
-                    <p class="problem-cost">💔 20% churn due to slow support</p>
-                </div>
-
-                <!-- ✏️ PROBLEM CARD 3: Manual Invoices -->
-                <div class="problem-card">
-                    <span class="problem-icon">💰</span>
-                    <h3 class="problem-title">Manual Invoice & Payments</h3>
-                    <p class="problem-description">Chasing payments manually drains resources and impacts cash flow.</p>
-                    <p class="problem-cost">💔 5 days avg payment delay</p>
-                </div>
-
-                <!-- ✏️ PROBLEM CARD 4: Repetitive Replies -->
-                <div class="problem-card">
-                    <span class="problem-icon">📱</span>
-                    <h3 class="problem-title">Repetitive Social Replies</h3>
-                    <p class="problem-description">Handling common queries manually consumes valuable team time.</p>
-                    <p class="problem-cost">💔 15hrs/month wasted</p>
-                </div>
-
-                <!-- ✏️ PROBLEM CARD 5: Data Entry -->
-                <div class="problem-card">
-                    <span class="problem-icon">📊</span>
-                    <h3 class="problem-title">Manual Data Entry</h3>
-                    <p class="problem-description">Copy-pasting data between systems is error-prone and inefficient.</p>
-                    <p class="problem-cost">💔 $5k+ lost to errors/year</p>
-                </div>
-
-            </div>
+        <div class="stat">
+          <span class="stat-value" data-target="100">0</span>
+          <div class="stat-label">% Client Satisfaction</div>
         </div>
-    </section>
+      </div>
 
-    <!-- =====================================================
-         💼 SERVICES SECTION (Pricing packages)
-         ✏️ এখানে package name, price, features, button text change করো
-         ===================================================== -->
-    <section class="services section" id="services">
-        <div class="container">
-            <!-- ✏️ SERVICES SECTION TITLE -->
-            <h2 class="section-title">Scale Your Business, Effortlessly.</h2>
-            <!-- ✏️ SERVICES SECTION SUBTITLE -->
-            <p class="section-subtitle">Choose from our tailored automation packages, designed to fit your unique needs and accelerate your growth.</p>
+    </div>
 
-            <div class="services-grid">
+    <!-- RIGHT: Automation Flow Diagram -->
+    <div class="hero-visual">
+      <div class="automation-canvas" style="position:relative;">
 
-                <!-- ✏️ PACKAGE 1: STARTER -->
-                <div class="service-card">
-                    <h3 class="service-name">Starter</h3>  <!-- ✏️ package name -->
-                    <div class="service-price">$300–$500</div>  <!-- ✏️ price -->
-                    <p class="service-description">Perfect for businesses just getting started with automation.</p>  <!-- ✏️ description -->
-                    <div class="service-features">
-                        <!-- ✏️ FEATURES: প্রতিটা feature একটা .feature div -->
-                        <div class="feature">1 Automated Workflow</div>
-                        <div class="feature">n8n/Make Integration</div>
-                        <div class="feature">7-Day Delivery</div>
-                        <div class="feature">1 Revision</div>
-                        <div class="feature">Basic Documentation</div>
-                    </div>
-                    <!-- ✏️ BUTTON TEXT -->
-                    <button class="service-cta">Start Automating</button>
-                </div>
+        <!-- Floating badge above card -->
+        <div class="canvas-floating-badge">⚡ LIVE AUTOMATION</div>
 
-                <!-- ✏️ PACKAGE 2: GROWTH (Most Popular — highlighted) -->
-                <div class="service-card popular">
-                    <div class="popular-badge">Most Popular</div>  <!-- ✏️ badge text -->
-                    <h3 class="service-name">Growth</h3>
-                    <div class="service-price">$800–$1,500</div>
-                    <p class="service-description">Scale your operations with multiple automated workflows.</p>
-                    <div class="service-features">
-                        <div class="feature">3–5 Automated Workflows</div>
-                        <div class="feature">AI Chatbot Integration</div>
-                        <div class="feature">CRM Integration</div>
-                        <div class="feature">Email Automation</div>
-                        <div class="feature">Custom Dashboard</div>
-                        <div class="feature">14-Day Delivery</div>
-                        <div class="feature">3 Revisions</div>
-                        <div class="feature">30-Day Support</div>
-                        <div class="feature">1-Hour Training</div>
-                    </div>
-                    <button class="service-cta">Boost My Growth</button>
-                </div>
-
-                <!-- ✏️ PACKAGE 3: AGENCY -->
-                <div class="service-card">
-                    <h3 class="service-name">Agency</h3>
-                    <div class="service-price">$2,000+</div>
-                    <p class="service-description">Full-scale automation system with custom AI agents.</p>
-                    <div class="service-features">
-                        <div class="feature">Full System Automation</div>
-                        <div class="feature">Custom AI Agents</div>
-                        <div class="feature">Monthly Retainer ($150-300/mo)</div>
-                        <div class="feature">Priority Support</div>
-                        <div class="feature">Dedicated Account Manager</div>
-                        <div class="feature">Advanced Analytics</div>
-                        <div class="feature">Unlimited Revisions</div>
-                    </div>
-                    <button class="service-cta">Request Custom Plan</button>
-                </div>
-
-            </div>
+        <!-- Canvas window header -->
+        <div class="canvas-header">
+          <div class="canvas-dot" style="background:#FF5E7D;"></div>
+          <div class="canvas-dot" style="background:#F0C070;"></div>
+          <div class="canvas-dot" style="background:#00F5C0;"></div>
+          <span class="canvas-title">goaxilo_workflow.json</span>
+          <div class="canvas-live">
+            <div class="live-dot"></div>
+            RUNNING
+          </div>
         </div>
-    </section>
 
-    <!-- =====================================================
-         ⚙️ PROCESS SECTION (Discovery → Build → Deploy)
-         ✏️ এখানে step title, description, days change করো
-         ===================================================== -->
-    <section class="process section" id="process">
-        <div class="container">
-            <!-- ✏️ PROCESS SECTION TITLE -->
-            <h2 class="section-title">Your Path to Automated Excellence.</h2>
-            <!-- ✏️ PROCESS SECTION SUBTITLE -->
-            <p class="section-subtitle">Our streamlined 3-phase process ensures rapid deployment and measurable impact.</p>
+        <!-- Automation Flow Rows -->
+        <div class="flow-nodes">
 
-            <div class="process-timeline">
-
-                <!-- ✏️ STEP 1: Discovery -->
-                <div class="process-step">
-                    <span class="step-number">01</span>  <!-- ✏️ step number -->
-                    <span class="step-icon">🔍</span>  <!-- ✏️ step emoji -->
-                    <h3 class="step-title">Uncover Opportunities</h3>  <!-- ✏️ step title -->
-                    <p class="step-description">A deep-dive into your operations to pinpoint high-impact automation possibilities.</p>  <!-- ✏️ description -->
-                    <span class="step-days">Day 1–2</span>  <!-- ✏️ timeline -->
-                </div>
-
-                <!-- ✏️ STEP 2: Build -->
-                <div class="process-step">
-                    <span class="step-number">02</span>
-                    <span class="step-icon">⚙️</span>
-                    <h3 class="step-title">Crafting Your AI Agents</h3>
-                    <p class="step-description">We design, develop, and rigorously test custom AI workflows tailored to your business.</p>
-                    <span class="step-days">Day 3–10</span>
-                </div>
-
-                <!-- ✏️ STEP 3: Deploy -->
-                <div class="process-step">
-                    <span class="step-number">03</span>
-                    <span class="step-icon">🚀</span>
-                    <h3 class="step-title">Launch & Empower</h3>
-                    <p class="step-description">Seamless deployment, comprehensive training, and 30 days of dedicated support.</p>
-                    <span class="step-days">Day 11–14</span>
-                </div>
-
+          <!-- ROW 1: Lead comes in → AI qualifies → CRM updated -->
+          <div class="flow-row">
+            <div class="flow-node active">
+              <span class="node-icon">📧</span>
+              <div class="node-text">
+                <span class="node-label">Trigger</span>
+                <span class="node-name">New Email Lead</span>
+              </div>
+              <div class="node-status status-green"></div>
             </div>
+            <div class="flow-arrow">›</div>
+            <div class="flow-node">
+              <span class="node-icon">🤖</span>
+              <div class="node-text">
+                <span class="node-label">AI Agent</span>
+                <span class="node-name">Qualify Lead</span>
+              </div>
+              <div class="node-status status-purple"></div>
+            </div>
+            <div class="flow-arrow">›</div>
+            <div class="flow-node">
+              <span class="node-icon">✅</span>
+              <div class="node-text">
+                <span class="node-label">Action</span>
+                <span class="node-name">Update CRM</span>
+              </div>
+              <div class="node-status status-green"></div>
+            </div>
+          </div>
+
+          <!-- ROW 2: Form submit → AI drafts → Slack notified -->
+          <div class="flow-row">
+            <div class="flow-node">
+              <span class="node-icon">📋</span>
+              <div class="node-text">
+                <span class="node-label">Trigger</span>
+                <span class="node-name">Form Submit</span>
+              </div>
+              <div class="node-status status-green"></div>
+            </div>
+            <div class="flow-arrow">›</div>
+            <div class="flow-node active">
+              <span class="node-icon">✍️</span>
+              <div class="node-text">
+                <span class="node-label">AI Agent</span>
+                <span class="node-name">Draft Reply</span>
+              </div>
+              <div class="node-status status-purple"></div>
+            </div>
+            <div class="flow-arrow">›</div>
+            <div class="flow-node">
+              <span class="node-icon">💬</span>
+              <div class="node-text">
+                <span class="node-label">Action</span>
+                <span class="node-name">Notify Slack</span>
+              </div>
+              <div class="node-status status-amber"></div>
+            </div>
+          </div>
+
+          <!-- ROW 3: Invoice due → AI checks → Payment sent -->
+          <div class="flow-row">
+            <div class="flow-node">
+              <span class="node-icon">🕐</span>
+              <div class="node-text">
+                <span class="node-label">Schedule</span>
+                <span class="node-name">Invoice Due</span>
+              </div>
+              <div class="node-status status-green"></div>
+            </div>
+            <div class="flow-arrow">›</div>
+            <div class="flow-node">
+              <span class="node-icon">🔍</span>
+              <div class="node-text">
+                <span class="node-label">AI Check</span>
+                <span class="node-name">Verify Status</span>
+              </div>
+              <div class="node-status status-purple"></div>
+            </div>
+            <div class="flow-arrow">›</div>
+            <div class="flow-node">
+              <span class="node-icon">💰</span>
+              <div class="node-text">
+                <span class="node-label">Action</span>
+                <span class="node-name">Send Reminder</span>
+              </div>
+              <div class="node-status status-green"></div>
+            </div>
+          </div>
+
+          <!-- ROW 4: Data → AI analyzes → Report generated -->
+          <div class="flow-row">
+            <div class="flow-node">
+              <span class="node-icon">📊</span>
+              <div class="node-text">
+                <span class="node-label">Data</span>
+                <span class="node-name">Sheet Update</span>
+              </div>
+              <div class="node-status status-green"></div>
+            </div>
+            <div class="flow-arrow">›</div>
+            <div class="flow-node active">
+              <span class="node-icon">🧠</span>
+              <div class="node-text">
+                <span class="node-label">AI Analyze</span>
+                <span class="node-name">Find Insights</span>
+              </div>
+              <div class="node-status status-purple"></div>
+            </div>
+            <div class="flow-arrow">›</div>
+            <div class="flow-node">
+              <span class="node-icon">📈</span>
+              <div class="node-text">
+                <span class="node-label">Output</span>
+                <span class="node-name">Auto Report</span>
+              </div>
+              <div class="node-status status-green"></div>
+            </div>
+          </div>
+
+        </div><!-- end flow-nodes -->
+
+        <!-- Canvas mini stats -->
+        <div class="canvas-stats">
+          <div class="canvas-stat">
+            <span class="canvas-stat-val">4 Active</span>
+            <span class="canvas-stat-key">Workflows</span>
+          </div>
+          <div class="canvas-stat">
+            <span class="canvas-stat-val">847</span>
+            <span class="canvas-stat-key">Tasks Today</span>
+          </div>
+          <div class="canvas-stat">
+            <span class="canvas-stat-val">0 Errors</span>
+            <span class="canvas-stat-key">Status</span>
+          </div>
         </div>
-    </section>
 
-    <!-- =====================================================
-         📊 RESULTS SECTION (Case Studies)
-         ✏️ এখানে industry, metrics, description change করো
-         Real client results পেলে এখানে replace করো
-         ===================================================== -->
-    <section class="results section" id="results">
-        <div class="container">
-            <!-- ✏️ RESULTS SECTION TITLE -->
-            <h2 class="section-title">Impact That Speaks Volumes.</h2>
-            <!-- ✏️ RESULTS SECTION SUBTITLE -->
-            <p class="section-subtitle">Real-world results from businesses transformed by GoAxilo's intelligent automation.</p>
+      </div><!-- end automation-canvas -->
+    </div><!-- end hero-visual -->
 
-            <div class="results-grid">
+  </section>
+  </div>
 
-                <!-- ✏️ CASE STUDY 1: E-commerce -->
-                <div class="result-card">
-                    <div class="result-tag">E-commerce</div>  <!-- ✏️ industry tag -->
-                    <span class="result-icon">🛒</span>  <!-- ✏️ emoji -->
-                    <h3 class="result-title">E-commerce Brand</h3>  <!-- ✏️ client name/type -->
-                    <div class="result-metrics">📈 Saved 20hrs/week • 3x lead conversion</div>  <!-- ✏️ key metrics -->
-                    <p class="result-description">Automated product updates, customer service, and order fulfillment, boosting efficiency and sales.</p>  <!-- ✏️ description -->
-                </div>
-
-                <!-- ✏️ CASE STUDY 2: Real Estate -->
-                <div class="result-card">
-                    <div class="result-tag">Real Estate</div>
-                    <span class="result-icon">🏠</span>
-                    <h3 class="result-title">Real Estate Agency</h3>
-                    <div class="result-metrics">📈 500+ follow-ups/month • 25% faster deals</div>
-                    <p class="result-description">Streamlined lead nurturing and client communication, accelerating their sales cycle.</p>
-                </div>
-
-                <!-- ✏️ CASE STUDY 3: SaaS -->
-                <div class="result-card">
-                    <div class="result-tag">SaaS</div>
-                    <span class="result-icon">💻</span>
-                    <h3 class="result-title">SaaS Company</h3>
-                    <div class="result-metrics">📈 60% fewer tickets • 90% satisfaction</div>
-                    <p class="result-description">Implemented AI chatbots and automated knowledge bases, enhancing support and freeing up agents.</p>
-                </div>
-
-            </div>
+  <!-- =====================================================
+       PROBLEMS SECTION
+       ===================================================== -->
+  <section class="problems section" id="problems">
+    <div class="container">
+      <h2 class="section-title">Your team is drowning in manual work.</h2>
+      <p class="section-subtitle">It's time to reclaim your time. GoAxilo transforms operational bottlenecks into automated advantages.</p>
+      <div class="problems-grid">
+        <div class="problem-card">
+          <span class="problem-icon">📧</span>
+          <h3 class="problem-title">Lead Tracking & Follow-up</h3>
+          <p class="problem-description">Manual lead management leads to missed opportunities and slow conversions.</p>
+          <p class="problem-cost">💔 8hrs/week wasted</p>
         </div>
-    </section>
-
-    <!-- =====================================================
-         💬 TESTIMONIALS SECTION (Client reviews)
-         ✏️ Real client পেলে এখানে name, company, quote replace করো
-         ===================================================== -->
-    <section class="testimonials section" id="testimonials">
-        <div class="container">
-            <!-- ✏️ TESTIMONIALS SECTION TITLE -->
-            <h2 class="section-title">Trusted by Visionary Businesses.</h2>
-            <!-- ✏️ TESTIMONIALS SECTION SUBTITLE -->
-            <p class="section-subtitle">Hear directly from leaders who've experienced the GoAxilo difference.</p>
-
-            <div class="testimonials-grid">
-
-                <!-- ✏️ TESTIMONIAL 1 -->
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>  <!-- ✏️ star rating -->
-                    <!-- ✏️ QUOTE: client-এর কথা -->
-                    <p class="testimonial-quote">"GoAxilo's AI solutions are a game-changer. We've seen unprecedented efficiency and our team can finally focus on innovation. Truly world-class!"</p>
-                    <div class="testimonial-author">
-                        <!-- ✏️ AVATAR: client-এর initials (JD = John Doe) -->
-                        <div class="author-avatar">JD</div>
-                        <div class="author-info">
-                            <div class="author-name">John Doe</div>  <!-- ✏️ client name -->
-                            <div class="author-company">CEO, InnovateTech</div>  <!-- ✏️ company -->
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ✏️ TESTIMONIAL 2 -->
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-quote">"Our marketing automation is now seamless and incredibly effective. GoAxilo delivered beyond expectations, making us a more agile business."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">JS</div>
-                        <div class="author-info">
-                            <div class="author-name">Jane Smith</div>
-                            <div class="author-company">Marketing Director, GrowthHub</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ✏️ TESTIMONIAL 3 -->
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-quote">"The support and expertise from GoAxilo made our automation journey effortless. Their solutions are robust, and the impact on our bottom line is clear."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">RJ</div>
-                        <div class="author-info">
-                            <div class="author-name">Robert Johnson</div>
-                            <div class="author-company">Founder, EcomFlow</div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+        <div class="problem-card">
+          <span class="problem-icon">💬</span>
+          <h3 class="problem-title">Slow Customer Responses</h3>
+          <p class="problem-description">Delayed replies frustrate customers and damage your brand reputation.</p>
+          <p class="problem-cost">💔 20% churn due to slow support</p>
         </div>
-    </section>
-
-    <!-- =====================================================
-         🏆 WHY US SECTION (GoAxilo-এর সুবিধাগুলো)
-         ✏️ এখানে icon, title, description change করো
-         ===================================================== -->
-    <section class="why-us section" id="why-us">
-        <div class="container">
-            <!-- ✏️ WHY US SECTION TITLE -->
-            <h2 class="section-title">Why Partner with GoAxilo?</h2>
-            <!-- ✏️ WHY US SECTION SUBTITLE -->
-            <p class="section-subtitle">Beyond automation, we deliver a strategic advantage that propels your business forward.</p>
-
-            <div class="why-grid">
-
-                <!-- ✏️ WHY CARD 1 -->
-                <div class="why-card">
-                    <span class="why-icon">🧠</span>  <!-- ✏️ emoji -->
-                    <h3 class="why-title">AI-First Approach</h3>  <!-- ✏️ title -->
-                    <p class="why-description">Intelligent agents, not just tools. Our solutions learn, adapt, and optimize.</p>  <!-- ✏️ description -->
-                </div>
-
-                <!-- ✏️ WHY CARD 2 -->
-                <div class="why-card">
-                    <span class="why-icon">⚡</span>
-                    <h3 class="why-title">Fast Delivery</h3>
-                    <p class="why-description">Go live in 14 days. Rapid deployment for immediate impact.</p>
-                </div>
-
-                <!-- ✏️ WHY CARD 3 -->
-                <div class="why-card">
-                    <span class="why-icon">🔓</span>
-                    <h3 class="why-title">No Lock-in</h3>
-                    <p class="why-description">Your workflows, your ownership. Complete control over your systems.</p>
-                </div>
-
-                <!-- ✏️ WHY CARD 4 -->
-                <div class="why-card">
-                    <span class="why-icon">🌍</span>
-                    <h3 class="why-title">Bangladesh Global Standard</h3>
-                    <p class="why-description">World-class quality, local pricing. Global standards, accessible rates.</p>
-                </div>
-
-                <!-- ✏️ WHY CARD 5 -->
-                <div class="why-card">
-                    <span class="why-icon">🛡️</span>
-                    <h3 class="why-title">30-Day Support</h3>
-                    <p class="why-description">Dedicated post-launch support ensures flawless operation and peace of mind.</p>
-                </div>
-
-            </div>
+        <div class="problem-card">
+          <span class="problem-icon">💰</span>
+          <h3 class="problem-title">Manual Invoice & Payments</h3>
+          <p class="problem-description">Chasing payments manually drains resources and impacts cash flow.</p>
+          <p class="problem-cost">💔 5 days avg payment delay</p>
         </div>
-    </section>
-
-    <!-- =====================================================
-         👤 ABOUT SECTION (Founder story)
-         ✏️ এখানে founder name এবং agency story change করো
-         ===================================================== -->
-    <section class="about section" id="about">
-        <div class="container">
-            <!-- ✏️ ABOUT SECTION TITLE -->
-            <h2 class="section-title">The GoAxilo Story.</h2>
-            <!-- ✏️ ABOUT SECTION SUBTITLE -->
-            <p class="section-subtitle">Empowering businesses through intelligent automation, globally.</p>
-
-            <div class="about-content">
-                <!-- ✏️ ABOUT PARAGRAPH 1: Founder এবং mission -->
-                <p class="about-text">
-                    Founded by <span class="about-highlight"><a href="https://saiful-portfolio-zeta.vercel.app/" target="_blank" rel="noopener noreferrer" style="color: var(--purple); text-decoration: underline; font-weight: 600;">Saiful Islam Shah</a></span>, GoAxilo is driven by a singular mission: to liberate small and medium-sized businesses from the shackles of manual work. We envision a future where every business, regardless of size, can harness the power of AI to achieve unprecedented efficiency and scale.
-                </p>
-                <!-- ✏️ ABOUT PARAGRAPH 2: Bangladesh + global positioning -->
-                <p class="about-text">
-                    As a <span class="about-highlight">Bangladesh-based agency with a global footprint</span>, GoAxilo blends exceptional talent with a deep understanding of international business needs. We deliver Silicon Valley-grade AI automation solutions at a value that empowers growth, making advanced technology accessible to all.
-                </p>
-            </div>
+        <div class="problem-card">
+          <span class="problem-icon">📱</span>
+          <h3 class="problem-title">Repetitive Social Replies</h3>
+          <p class="problem-description">Handling common queries manually consumes valuable team time.</p>
+          <p class="problem-cost">💔 15hrs/month wasted</p>
         </div>
-    </section>
-
-    <!-- =====================================================
-         📝 BLOG SECTION (Article previews)
-         ✏️ Real blog post লিখলে এখানে title, tag, link update করো
-         ===================================================== -->
-    <section class="blog section" id="blog">
-        <div class="container">
-            <!-- ✏️ BLOG SECTION TITLE -->
-            <h2 class="section-title">Insights & Innovation.</h2>
-            <!-- ✏️ BLOG SECTION SUBTITLE -->
-            <p class="section-subtitle">Stay ahead with our latest thoughts on AI, automation, and business growth.</p>
-
-            <div class="blog-grid">
-
-                <!-- ✏️ BLOG POST 1 -->
-                <div class="blog-card">
-                    <div class="blog-header">🤖</div>  <!-- ✏️ blog emoji -->
-                    <div class="blog-content">
-                        <div class="blog-tag">AI Trends</div>  <!-- ✏️ category -->
-                        <h3 class="blog-title">The AI Revolution: How Intelligent Agents are Reshaping Industries</h3>  <!-- ✏️ title -->
-                        <p class="blog-meta">5 min read</p>  <!-- ✏️ read time -->
-                        <!-- ✏️ BLOG LINK: href-এ real blog URL দাও -->
-                        <a href="#" class="blog-link">Read More →</a>
-                    </div>
-                </div>
-
-                <!-- ✏️ BLOG POST 2 -->
-                <div class="blog-card">
-                    <div class="blog-header">🔄</div>
-                    <div class="blog-content">
-                        <div class="blog-tag">Automation Strategy</div>
-                        <h3 class="blog-title">Beyond RPA: Why Your Business Needs Adaptive AI Automation</h3>
-                        <p class="blog-meta">7 min read</p>
-                        <a href="#" class="blog-link">Read More →</a>
-                    </div>
-                </div>
-
-                <!-- ✏️ BLOG POST 3 -->
-                <div class="blog-card">
-                    <div class="blog-header">📈</div>
-                    <div class="blog-content">
-                        <div class="blog-tag">Business Growth</div>
-                        <h3 class="blog-title">Maximizing ROI with AI: A Guide for Small to Medium Businesses</h3>
-                        <p class="blog-meta">6 min read</p>
-                        <a href="#" class="blog-link">Read More →</a>
-                    </div>
-                </div>
-
-            </div>
+        <div class="problem-card">
+          <span class="problem-icon">📊</span>
+          <h3 class="problem-title">Manual Data Entry</h3>
+          <p class="problem-description">Copy-pasting data between systems is error-prone and inefficient.</p>
+          <p class="problem-cost">💔 $5k+ lost to errors/year</p>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- =====================================================
-         ❓ FAQ SECTION (Frequently Asked Questions)
-         ✏️ এখানে question এবং answer text change করো
-         নতুন FAQ যোগ করতে একটা .faq-item div copy করো
-         ===================================================== -->
-    <section class="faq section" id="faq">
-        <div class="container">
-            <!-- ✏️ FAQ SECTION TITLE -->
-            <h2 class="section-title">Your Questions, Answered.</h2>
-            <!-- ✏️ FAQ SECTION SUBTITLE -->
-            <p class="section-subtitle">Everything you need to know about partnering with GoAxilo.</p>
+  <!-- =====================================================
+       SERVICES SECTION
+       ===================================================== -->
+  <section class="services section" id="services">
+    <div class="container">
+      <h2 class="section-title">Scale Your Business, Effortlessly.</h2>
+      <p class="section-subtitle">Choose from our tailored automation packages, designed to fit your unique needs and accelerate your growth.</p>
+      <div class="services-grid">
 
-            <div class="faq-container">
-
-                <!-- ✏️ FAQ 1 -->
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>What exactly is AI automation?</span>  <!-- ✏️ question -->
-                        <span class="faq-toggle">▼</span>
-                    </button>
-                    <div class="faq-answer">
-                        <!-- ✏️ ANSWER TEXT -->
-                        <p class="faq-text">AI automation integrates artificial intelligence with traditional automation, allowing systems to not just follow rules, but to learn, adapt, and make decisions, leading to more sophisticated and effective workflows.</p>
-                    </div>
-                </div>
-
-                <!-- ✏️ FAQ 2 -->
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>How quickly can I see results?</span>
-                        <span class="faq-toggle">▼</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p class="faq-text">Our streamlined process ensures that most projects move from discovery to live deployment within 14 days, providing rapid time-to-value for your business.</p>
-                    </div>
-                </div>
-
-                <!-- ✏️ FAQ 3 -->
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>Do I need technical expertise to use your solutions?</span>
-                        <span class="faq-toggle">▼</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p class="faq-text">Not at all. We handle all the technical complexities. Our solutions are designed for seamless integration into your existing operations, requiring no coding knowledge from your team.</p>
-                    </div>
-                </div>
-
-                <!-- ✏️ FAQ 4 -->
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>What is the typical cost for an automation project?</span>
-                        <span class="faq-toggle">▼</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p class="faq-text">Our pricing is transparent and tiered, starting from $300-$500 for basic workflows up to $2000+ for full-system integrations. We offer packages to suit various budgets and needs.</p>
-                    </div>
-                </div>
-
-                <!-- ✏️ FAQ 5 -->
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>What kind of support do you offer after deployment?</span>
-                        <span class="faq-toggle">▼</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p class="faq-text">Every project includes 30 days of comprehensive post-deployment support to ensure everything runs smoothly. Our Agency package also offers ongoing monthly retainer support.</p>
-                    </div>
-                </div>
-
-                <!-- ✏️ FAQ 6 -->
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>Can GoAxilo integrate with my existing software?</span>
-                        <span class="faq-toggle">▼</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p class="faq-text">Absolutely. We specialize in integrating with a vast array of business tools, including CRMs, ERPs, marketing platforms, and more, using robust integration platforms like n8n, Make, and Zapier.</p>
-                    </div>
-                </div>
-
-                <!-- ✏️ FAQ 7 -->
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>What is the "No Lock-in" guarantee?</span>
-                        <span class="faq-toggle">▼</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p class="faq-text">It means you retain full ownership and control over all the automation workflows we build for you. We provide all necessary documentation and access, ensuring you're never dependent on us.</p>
-                    </div>
-                </div>
-
-                <!-- ✏️ FAQ 8 -->
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>How do I get started with a Free Audit?</span>
-                        <span class="faq-toggle">▼</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p class="faq-text">Simply fill out our contact form or click the 'Get Free Audit' button. We'll schedule a brief call to understand your needs and outline potential automation opportunities.</p>
-                    </div>
-                </div>
-
-            </div>
+        <div class="service-card">
+          <h3 class="service-name">Starter</h3>
+          <div class="service-price">$300–$500</div>
+          <p class="service-description">Perfect for businesses just getting started with automation.</p>
+          <div class="service-divider"></div>
+          <div class="service-features">
+            <div class="feature">1 Automated Workflow</div>
+            <div class="feature">n8n/Make Integration</div>
+            <div class="feature">7-Day Delivery</div>
+            <div class="feature">Email Support</div>
+            <div class="feature">14-Day Follow-up</div>
+          </div>
+          <a href="#contact" class="btn-service">Get Started →</a>
         </div>
-    </section>
 
-    <!-- =====================================================
-         📬 CONTACT SECTION (Form এবং social links)
-         ✏️ এখানে WhatsApp number এবং social links update করো
-         ===================================================== -->
-    <section class="contact section" id="contact">
-        <div class="container">
-            <!-- ✏️ CONTACT SECTION TITLE -->
-            <h2 class="section-title">Ready to automate your business?</h2>
-            <!-- ✏️ CONTACT SECTION SUBTITLE -->
-            <p class="section-subtitle">Transform your operations and unlock unprecedented growth with GoAxilo.</p>
-
-            <div class="contact-container">
-
-                <!-- ✏️ SCARCITY BADGE: urgency তৈরি করতে — text change করো -->
-                <div class="scarcity-badge">⏰ Only 3 client slots open this month</div>
-
-                <!-- ✏️ GUARANTEE BADGE: trust তৈরি করতে -->
-                <div class="guarantee-badge">✓ 30-Day Money Back Guarantee</div>
-
-                <!-- CONTACT FORM -->
-                <form class="contact-form" id="contactForm">
-
-                    <!-- ✏️ NAME FIELD -->
-                    <div class="form-group">
-                        <label for="name">Your Name</label>
-                        <input type="text" id="name" name="name" placeholder="John Doe" required>
-                    </div>
-
-                    <!-- ✏️ EMAIL FIELD -->
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" placeholder="you@company.com" required>
-                    </div>
-
-                    <!-- ✏️ COMPANY FIELD (optional) -->
-                    <div class="form-group">
-                        <label for="company">Company (Optional)</label>
-                        <input type="text" id="company" name="company" placeholder="Your Company">
-                    </div>
-
-                    <!-- ✏️ MESSAGE FIELD -->
-                    <div class="form-group">
-                        <label for="message">Tell us about your project</label>
-                        <textarea id="message" name="message" placeholder="Describe your automation needs..." required></textarea>
-                    </div>
-
-                    <div class="form-buttons">
-                        <!-- ✏️ SUBMIT BUTTON TEXT -->
-                        <button type="submit" class="submit-btn">Send Message</button>
-
-                        <!-- ✏️ WHATSAPP BUTTON: href-এ তোমার WhatsApp number দাও
-                             Format: https://wa.me/880XXXXXXXXXX
-                             Example: https://wa.me/8801712345678 -->
-                        <a href="https://wa.me/8801949901616" target="_blank" class="whatsapp-btn">💬 WhatsApp</a>
-                    </div>
-
-                </form>
-
-                <!-- SOCIAL LINKS: ✏️ এখানে সব social links আছে
-                     প্রতিটা href-এ তোমার actual profile URL দাও -->
-                <div class="social-links">
-                    <!-- Facebook -->
-                    <a href="https://web.facebook.com/GoAxilo" target="_blank" class="social-link" title="Facebook">f</a>
-                    <!-- YouTube -->
-                    <a href="https://www.youtube.com/@GoAxilo" target="_blank" class="social-link" title="YouTube">▶</a>
-                    <!-- Instagram -->
-                    <a href="https://www.instagram.com/GoAxilo" target="_blank" class="social-link" title="Instagram">📷</a>
-                    <!-- TikTok -->
-                    <a href="https://www.tiktok.com/@GoAxilo" target="_blank" class="social-link" title="TikTok">♪</a>
-                    <!-- X (Twitter) -->
-                    <a href="https://twitter.com/GoAxilo" target="_blank" class="social-link" title="X">𝕏</a>
-                    <!-- LinkedIn -->
-                    <a href="https://www.linkedin.com/company/GoAxilo" target="_blank" class="social-link" title="LinkedIn">in</a>
-                    <!-- Upwork -->
-                    <a href="https://www.upwork.com/ag/GoAxilo" target="_blank" class="social-link" title="Upwork">U</a>
-                </div>
-
-            </div>
+        <div class="service-card">
+          <div class="service-popular">Most Popular</div>
+          <h3 class="service-name">Growth</h3>
+          <div class="service-price">$800–$1,500</div>
+          <p class="service-description">For growing businesses ready to scale their operations with AI.</p>
+          <div class="service-divider"></div>
+          <div class="service-features">
+            <div class="feature">3 Automated Workflows</div>
+            <div class="feature">AI Agent Integration</div>
+            <div class="feature">CRM + Email + Slack</div>
+            <div class="feature">14-Day Delivery</div>
+            <div class="feature">30-Day Support</div>
+            <div class="feature">Performance Dashboard</div>
+          </div>
+          <a href="#contact" class="btn-service primary">Get Started →</a>
         </div>
-    </section>
 
-    <!-- =====================================================
-         🦶 FOOTER (সবার নিচে)
-         ✏️ এখানে tagline, links, copyright change করো
-         ===================================================== -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-
-                <!-- Footer Logo + Tagline -->
-                <div class="footer-section footer-logo-section">
-                    <div class="footer-logo">
-                        <!-- Footer logo SVG (dark background-এর জন্য purple fill) -->
-                        <svg width="24" height="24" viewBox="0 0 36 36" fill="none">
-                            <rect width="36" height="36" rx="9" fill="#534AB7"/>
-                            <path d="M10 26 L18 10 L26 26" stroke="#7F77DD" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                            <path d="M13 21 L23 21" stroke="#7F77DD" stroke-width="2" stroke-linecap="round" fill="none"/>
-                            <circle cx="26" cy="26" r="2.5" fill="#AFA9EC"/>
-                        </svg>
-                        Go<span>Axilo</span>
-                    </div>
-                    <!-- ✏️ FOOTER TAGLINE -->
-                    <p class="footer-tagline">AI agents for businesses that mean business.</p>
-                </div>
-
-                <!-- Quick Links -->
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <div class="footer-links">
-                        <!-- ✏️ FOOTER NAV LINKS -->
-                        <a href="#services">Services</a>
-                        <a href="#process">Process</a>
-                        <a href="#results">Results</a>
-                        <a href="#about">About</a>
-                        <a href="#contact">Contact</a>
-                    </div>
-                </div>
-
-                <!-- Social Links in Footer -->
-                <div class="footer-section">
-                    <h3>Follow Us</h3>
-                    <div class="footer-socials">
-                        <!-- ✏️ FOOTER SOCIAL ICONS: same as contact section -->
-                        <a href="https://web.facebook.com/GoAxilo" target="_blank" class="footer-social-link" title="Facebook">f</a>
-                        <a href="https://www.youtube.com/@GoAxilo" target="_blank" class="footer-social-link" title="YouTube">▶</a>
-                        <a href="https://www.instagram.com/GoAxilo" target="_blank" class="footer-social-link" title="Instagram">📷</a>
-                        <a href="https://www.tiktok.com/@GoAxilo" target="_blank" class="footer-social-link" title="TikTok">♪</a>
-                        <a href="https://twitter.com/GoAxilo" target="_blank" class="footer-social-link" title="X">𝕏</a>
-                        <a href="https://www.linkedin.com/company/GoAxilo" target="_blank" class="footer-social-link" title="LinkedIn">in</a>
-                        <a href="https://www.upwork.com/ag/GoAxilo" target="_blank" class="footer-social-link" title="Upwork">U</a>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- ✏️ COPYRIGHT LINE: year এবং text change করো -->
-            <div class="footer-bottom">
-                <p>© 2025 GoAxilo. All rights reserved. | Automate everything. Scale anywhere.</p>
-            </div>
-
+        <div class="service-card">
+          <h3 class="service-name">Agency</h3>
+          <div class="service-price">$2,000+</div>
+          <p class="service-description">Full automation ecosystem for agencies and scaling enterprises.</p>
+          <div class="service-divider"></div>
+          <div class="service-features">
+            <div class="feature">Unlimited Workflows</div>
+            <div class="feature">Custom AI Agents</div>
+            <div class="feature">Full Stack Integration</div>
+            <div class="feature">Dedicated Manager</div>
+            <div class="feature">Monthly Optimization</div>
+            <div class="feature">Priority Support 24/7</div>
+          </div>
+          <a href="#contact" class="btn-service">Get Started →</a>
         </div>
-    </footer>
 
-    <!-- =====================================================
-         📌 STICKY CTA BUTTON (page scroll করলে নিচে দেখা যায়)
-         ✏️ Button text change করতে পারো
-         ===================================================== -->
-    <!-- ✏️ STICKY CTA TEXT: "Get Free Audit ↓" change করতে পারো -->
-    <a href="#contact" class="sticky-cta" id="stickyCTA">Get Free Audit ↓</a>
+      </div>
+    </div>
+  </section>
 
-    <!-- =====================================================
-         ⚡ JAVASCRIPT (website-এর interactive features)
-         Python-এর মতো ভাবো — এগুলো functions যেগুলো
-         user action-এ trigger হয়
-         ===================================================== -->
-    <script>
-        // =====================================================
-        // NAVBAR SCROLL EFFECT
-        // User scroll করলে navbar-এ shadow এবং solid background আসে
-        // Python equivalent: if scroll_position > 100: add_class('scrolled')
-        // =====================================================
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                // 100px scroll করলে 'scrolled' class add হয়
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
+  <!-- =====================================================
+       PROCESS SECTION
+       ===================================================== -->
+  <section class="process section" id="process">
+    <div class="container">
+      <h2 class="section-title">Your Path to Automated Excellence.</h2>
+      <p class="section-subtitle">Our streamlined 3-phase process ensures rapid deployment and measurable impact.</p>
+      <div class="process-timeline">
+        <div class="process-step">
+          <span class="step-number">01</span>
+          <span class="step-icon">🔍</span>
+          <h3 class="step-title">Uncover Opportunities</h3>
+          <p class="step-description">A deep-dive into your operations to pinpoint high-impact automation possibilities.</p>
+          <span class="step-days">Day 1–2</span>
+        </div>
+        <div class="process-step">
+          <span class="step-number">02</span>
+          <span class="step-icon">⚙️</span>
+          <h3 class="step-title">Crafting Your AI Agents</h3>
+          <p class="step-description">We design, develop, and rigorously test custom AI workflows tailored to your business.</p>
+          <span class="step-days">Day 3–10</span>
+        </div>
+        <div class="process-step">
+          <span class="step-number">03</span>
+          <span class="step-icon">🚀</span>
+          <h3 class="step-title">Launch & Empower</h3>
+          <p class="step-description">Seamless deployment, comprehensive training, and 30 days of dedicated support.</p>
+          <span class="step-days">Day 11–14</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        // =====================================================
-        // STICKY CTA BUTTON
-        // 500px scroll করলে floating button দেখা যায়
-        // ✏️ 500 change করলে কতটুকু scroll করলে দেখাবে তা বদলাবে
-        // =====================================================
-        const stickyCTA = document.getElementById('stickyCTA');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 500) {
-                stickyCTA.classList.add('show'); // দেখা যাবে
-            } else {
-                stickyCTA.classList.remove('show'); // লুকাবে
-            }
-        });
+  <!-- =====================================================
+       RESULTS SECTION
+       ===================================================== -->
+  <section class="results section" id="results">
+    <div class="container">
+      <h2 class="section-title">Impact That Speaks Volumes.</h2>
+      <p class="section-subtitle">Real-world results from businesses transformed by GoAxilo's intelligent automation.</p>
+      <div class="results-grid">
+        <div class="result-card">
+          <div class="result-tag">E-commerce</div>
+          <span class="result-icon">🛒</span>
+          <h3 class="result-title">E-commerce Brand</h3>
+          <div class="result-metrics">📈 Saved 20hrs/week • 3x lead conversion</div>
+          <p class="result-description">Automated product updates, customer service, and order fulfillment, boosting efficiency and sales.</p>
+        </div>
+        <div class="result-card">
+          <div class="result-tag">Real Estate</div>
+          <span class="result-icon">🏠</span>
+          <h3 class="result-title">Real Estate Agency</h3>
+          <div class="result-metrics">📈 500+ follow-ups/month • 25% faster deals</div>
+          <p class="result-description">Streamlined lead nurturing and client communication, accelerating their sales cycle.</p>
+        </div>
+        <div class="result-card">
+          <div class="result-tag">SaaS</div>
+          <span class="result-icon">💻</span>
+          <h3 class="result-title">SaaS Company</h3>
+          <div class="result-metrics">📈 60% fewer tickets • 90% satisfaction</div>
+          <p class="result-description">Implemented AI chatbots and automated knowledge bases, enhancing support and freeing up agents.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        // =====================================================
-        // COUNTER ANIMATION (Stats: 0 থেকে target number পর্যন্ত count করে)
-        // Python equivalent:
-        //   for i in range(0, target, increment):
-        //       display(i)
-        // =====================================================
-        function animateCounters() {
-            // সব element যেগুলোতে data-target আছে সেগুলো খোঁজো
-            const counters = document.querySelectorAll('[data-target]');
+  <!-- =====================================================
+       TESTIMONIALS
+       ===================================================== -->
+  <section class="testimonials section" id="testimonials">
+    <div class="container">
+      <h2 class="section-title">Trusted by Visionary Businesses.</h2>
+      <p class="section-subtitle">Hear directly from leaders who've experienced the GoAxilo difference.</p>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-quote">"GoAxilo's AI solutions are a game-changer. We've seen unprecedented efficiency and our team can finally focus on innovation. Truly world-class!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">JD</div>
+            <div class="author-info">
+              <div class="author-name">John Doe</div>
+              <div class="author-company">CEO, InnovateTech</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-quote">"Our marketing automation is now seamless and incredibly effective. GoAxilo delivered beyond expectations, making us a more agile business."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">JS</div>
+            <div class="author-info">
+              <div class="author-name">Jane Smith</div>
+              <div class="author-company">Marketing Director, GrowthHub</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-quote">"The support and expertise from GoAxilo made our automation journey effortless. Their solutions are robust, and the impact on our bottom line is clear."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">RJ</div>
+            <div class="author-info">
+              <div class="author-name">Robert Johnson</div>
+              <div class="author-company">Founder, EcomFlow</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-            counters.forEach(counter => {
-                // data-target attribute থেকে target number নাও
-                const target = parseInt(counter.getAttribute('data-target'));
-                const increment = target / 50; // ✏️ 50 = animation-এর step সংখ্যা (বেশি = ধীর)
-                let current = 0;
+  <!-- =====================================================
+       WHY US
+       ===================================================== -->
+  <section class="why-us section" id="why-us">
+    <div class="container">
+      <h2 class="section-title">Why Partner with GoAxilo?</h2>
+      <p class="section-subtitle">Beyond automation, we deliver a strategic advantage that propels your business forward.</p>
+      <div class="why-grid">
+        <div class="why-card">
+          <span class="why-icon">🧠</span>
+          <h3 class="why-title">AI-First Approach</h3>
+          <p class="why-description">Intelligent agents, not just tools. Our solutions learn, adapt, and optimize.</p>
+        </div>
+        <div class="why-card">
+          <span class="why-icon">⚡</span>
+          <h3 class="why-title">Fast Delivery</h3>
+          <p class="why-description">Go live in 14 days. Rapid deployment for immediate impact.</p>
+        </div>
+        <div class="why-card">
+          <span class="why-icon">🔓</span>
+          <h3 class="why-title">No Lock-in</h3>
+          <p class="why-description">Your workflows, your ownership. Complete control over your systems.</p>
+        </div>
+        <div class="why-card">
+          <span class="why-icon">🌍</span>
+          <h3 class="why-title">Bangladesh Global Standard</h3>
+          <p class="why-description">World-class quality, local pricing. Global standards, accessible rates.</p>
+        </div>
+        <div class="why-card">
+          <span class="why-icon">🛡️</span>
+          <h3 class="why-title">30-Day Support</h3>
+          <p class="why-description">Dedicated post-launch support ensures flawless operation and peace of mind.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-                const updateCounter = () => {
-                    current += increment;
-                    if (current < target) {
-                        // $2,000,000 এর মতো বড় number-এ $ sign এবং comma দাও
-                        if (target > 1000) {
-                            counter.textContent = '$' + Math.ceil(current).toLocaleString();
-                        } else {
-                            counter.textContent = Math.ceil(current);
-                        }
-                        requestAnimationFrame(updateCounter); // পরের frame-এ আবার চালাও
-                    } else {
-                        // Final value দেখাও
-                        if (target > 1000) {
-                            counter.textContent = '$' + target.toLocaleString();
-                        } else {
-                            counter.textContent = target;
-                        }
-                    }
-                };
-                updateCounter();
-            });
-        }
+  <!-- =====================================================
+       ABOUT
+       ===================================================== -->
+  <section class="about section" id="about">
+    <div class="container">
+      <h2 class="section-title">The GoAxilo Story.</h2>
+      <p class="section-subtitle">Empowering businesses through intelligent automation, globally.</p>
+      <div class="about-content">
+        <p class="about-text">
+          Founded by <span class="about-highlight"><a href="https://saiful-portfolio-zeta.vercel.app/" target="_blank" rel="noopener noreferrer">Saiful Islam Shah</a></span>, GoAxilo is driven by a singular mission: to liberate small and medium-sized businesses from the shackles of manual work. We envision a future where every business, regardless of size, can harness the power of AI to achieve unprecedented efficiency and scale.
+        </p>
+        <p class="about-text">
+          As a <span class="about-highlight">Bangladesh-based agency with a global footprint</span>, GoAxilo blends exceptional talent with a deep understanding of international business needs. We deliver Silicon Valley-grade AI automation solutions at a value that empowers growth, making advanced technology accessible to all.
+        </p>
+      </div>
+    </div>
+  </section>
 
-        // Page load হলে counter animation শুরু করো
-        window.addEventListener('load', animateCounters);
+  <!-- =====================================================
+       BLOG
+       ===================================================== -->
+  <section class="blog section" id="blog">
+    <div class="container">
+      <h2 class="section-title">Insights & Innovation.</h2>
+      <p class="section-subtitle">Stay ahead with our latest thoughts on AI, automation, and business growth.</p>
+      <div class="blog-grid">
+        <div class="blog-card">
+          <div class="blog-header">🤖</div>
+          <div class="blog-content">
+            <div class="blog-tag">AI Trends</div>
+            <h3 class="blog-title">The AI Revolution: How Intelligent Agents are Reshaping Industries</h3>
+            <p class="blog-meta">5 min read</p>
+            <a href="#" class="blog-link">Read More →</a>
+          </div>
+        </div>
+        <div class="blog-card">
+          <div class="blog-header">🔄</div>
+          <div class="blog-content">
+            <div class="blog-tag">Automation Strategy</div>
+            <h3 class="blog-title">Beyond RPA: Why Your Business Needs Adaptive AI Automation</h3>
+            <p class="blog-meta">7 min read</p>
+            <a href="#" class="blog-link">Read More →</a>
+          </div>
+        </div>
+        <div class="blog-card">
+          <div class="blog-header">📈</div>
+          <div class="blog-content">
+            <div class="blog-tag">Business Growth</div>
+            <h3 class="blog-title">Maximizing ROI with AI: A Guide for Small to Medium Businesses</h3>
+            <p class="blog-meta">6 min read</p>
+            <a href="#" class="blog-link">Read More →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        // =====================================================
-        // SCROLL ANIMATIONS (Intersection Observer)
-        // Element screen-এ দেখা গেলে fade-in animation চালায়
-        // Python equivalent:
-        //   def on_visible(element):
-        //       element.opacity = 1
-        // =====================================================
-        const observerOptions = {
-            threshold: 0.1,        // ✏️ 10% দেখা গেলে animation শুরু (0.1 = 10%)
-            rootMargin: '0px 0px -50px 0px'  // screen-এর 50px আগে trigger হয়
+  <!-- =====================================================
+       FAQ
+       ===================================================== -->
+  <section class="faq section" id="faq">
+    <div class="container">
+      <h2 class="section-title">Your Questions, Answered.</h2>
+      <p class="section-subtitle">Everything you need to know about partnering with GoAxilo.</p>
+      <div class="faq-container">
+        <div class="faq-item">
+          <button class="faq-question"><span>What exactly is AI automation?</span><span class="faq-toggle">▼</span></button>
+          <div class="faq-answer"><p class="faq-text">AI automation integrates artificial intelligence with traditional automation, allowing systems to not just follow rules, but to learn, adapt, and make decisions, leading to more sophisticated and effective workflows.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question"><span>How long does implementation take?</span><span class="faq-toggle">▼</span></button>
+          <div class="faq-answer"><p class="faq-text">Most projects are completed within 7–14 days. Complex enterprise integrations may take up to 21 days. We provide a clear timeline upfront before any work begins.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question"><span>Do I need technical knowledge?</span><span class="faq-toggle">▼</span></button>
+          <div class="faq-answer"><p class="faq-text">Not at all. We handle all the technical implementation. You just need to describe what you want automated, and we take care of the rest — including training your team.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question"><span>What tools do you use?</span><span class="faq-toggle">▼</span></button>
+          <div class="faq-answer"><p class="faq-text">We primarily use n8n, Make (Integromat), and Zapier for workflow automation, combined with LangChain and OpenRouter for AI agent development. We choose the best tool for your specific needs.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question"><span>What if the automation breaks?</span><span class="faq-toggle">▼</span></button>
+          <div class="faq-answer"><p class="faq-text">All packages include 14–30 days of post-launch support. We monitor your workflows and fix any issues rapidly. Growth and Agency clients get priority response within 4 hours.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       CONTACT
+       ===================================================== -->
+  <section class="contact section" id="contact">
+    <div class="container">
+      <h2 class="section-title">Ready to automate your business?</h2>
+      <p class="section-subtitle">Transform your operations and unlock unprecedented growth with GoAxilo.</p>
+      <div class="contact-container">
+        <div class="scarcity-badge">⏰ Only 3 client slots open this month</div>
+        <div class="guarantee-badge">✓ 30-Day Money Back Guarantee</div>
+        <form class="contact-form" id="contactForm">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="John Doe" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="you@company.com" required />
+          </div>
+          <div class="form-group">
+            <label for="company">Company (Optional)</label>
+            <input type="text" id="company" name="company" placeholder="Your Company" />
+          </div>
+          <div class="form-group">
+            <label for="message">Tell us about your project</label>
+            <textarea id="message" name="message" placeholder="Describe your automation needs..." required></textarea>
+          </div>
+          <div class="form-buttons">
+            <button type="submit" class="submit-btn">Send Message</button>
+            <a href="https://wa.me/8801949901616" target="_blank" class="whatsapp-btn">💬 WhatsApp</a>
+          </div>
+        </form>
+        <div class="social-links">
+          <a href="https://web.facebook.com/GoAxilo" target="_blank" class="social-link" title="Facebook">f</a>
+          <a href="https://www.youtube.com/@GoAxilo" target="_blank" class="social-link" title="YouTube">▶</a>
+          <a href="https://www.instagram.com/GoAxilo" target="_blank" class="social-link" title="Instagram">📷</a>
+          <a href="https://www.tiktok.com/@GoAxilo" target="_blank" class="social-link" title="TikTok">♪</a>
+          <a href="https://twitter.com/GoAxilo" target="_blank" class="social-link" title="X">𝕏</a>
+          <a href="https://www.linkedin.com/company/GoAxilo" target="_blank" class="social-link" title="LinkedIn">in</a>
+          <a href="https://www.upwork.com/ag/GoAxilo" target="_blank" class="social-link" title="Upwork">U</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       FOOTER
+       ===================================================== -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section footer-logo-section">
+        <div class="footer-logo">
+          <svg width="24" height="24" viewBox="0 0 36 36" fill="none">
+            <rect width="36" height="36" rx="9" fill="#7C5CFC"/>
+            <path d="M10 26 L18 10 L26 26" stroke="#C4B0FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <path d="M13 21 L23 21" stroke="#C4B0FF" stroke-width="2" stroke-linecap="round" fill="none"/>
+            <circle cx="26" cy="26" r="2.5" fill="#00F5C0"/>
+          </svg>
+          Go<span>Axilo</span>
+        </div>
+        <p class="footer-tagline">AI agents for businesses that mean business.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <div class="footer-links">
+          <a href="#services">Services</a>
+          <a href="#process">Process</a>
+          <a href="#results">Results</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h3>Follow Us</h3>
+        <div class="footer-socials">
+          <a href="https://web.facebook.com/GoAxilo" target="_blank" class="footer-social-link" title="Facebook">f</a>
+          <a href="https://www.youtube.com/@GoAxilo" target="_blank" class="footer-social-link" title="YouTube">▶</a>
+          <a href="https://www.instagram.com/GoAxilo" target="_blank" class="footer-social-link" title="Instagram">📷</a>
+          <a href="https://www.tiktok.com/@GoAxilo" target="_blank" class="footer-social-link" title="TikTok">♪</a>
+          <a href="https://twitter.com/GoAxilo" target="_blank" class="footer-social-link" title="X">𝕏</a>
+          <a href="https://www.linkedin.com/company/GoAxilo" target="_blank" class="footer-social-link" title="LinkedIn">in</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 GoAxilo. All rights reserved. | Automate everything. Scale anywhere.</p>
+    </div>
+  </footer>
+
+  <!-- Sticky CTA -->
+  <a href="#contact" class="sticky-cta" id="stickyCTA">Get Free Audit ↓</a>
+
+  <!-- =====================================================
+       JAVASCRIPT
+       ===================================================== -->
+  <script>
+    // ---- CUSTOM CURSOR ----
+    const cur = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cur.style.left = mx + 'px';
+      cur.style.top  = my + 'px';
+    });
+    (function animRing() {
+      rx += (mx - rx) * 0.1;
+      ry += (my - ry) * 0.1;
+      ring.style.left = rx + 'px';
+      ring.style.top  = ry + 'px';
+      requestAnimationFrame(animRing);
+    })();
+
+    // ---- NAVBAR SCROLL ----
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 80);
+    });
+
+    // ---- STICKY CTA ----
+    const stickyCTA = document.getElementById('stickyCTA');
+    window.addEventListener('scroll', () => {
+      stickyCTA.classList.toggle('show', window.scrollY > 500);
+    });
+
+    // ---- COUNTER ANIMATION ----
+    function animateCounters() {
+      document.querySelectorAll('[data-target]').forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-target'));
+        const step = target / 60;
+        let current = 0;
+        const tick = () => {
+          current += step;
+          if (current < target) {
+            counter.textContent = target > 1000 ? '$' + Math.ceil(current).toLocaleString() : Math.ceil(current);
+            requestAnimationFrame(tick);
+          } else {
+            counter.textContent = target > 1000 ? '$' + target.toLocaleString() : target;
+          }
         };
+        tick();
+      });
+    }
+    window.addEventListener('load', animateCounters);
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Element দেখা গেলে opacity 1 করো (দেখা যাবে)
-                    entry.target.style.opacity = '1';
-                    observer.unobserve(entry.target); // একবার দেখালে আর observe করো না
-                }
-            });
-        }, observerOptions);
-
-        // কোন কোন elements observe করবে (সব animated cards)
-        document.querySelectorAll(
-            '.problem-card, .service-card, .process-step, .result-card, ' +
-            '.testimonial-card, .why-card, .blog-card, .faq-item, .form-group'
-        ).forEach(el => {
-            observer.observe(el);
-        });
-
-        // =====================================================
-        // FAQ ACCORDION
-        // Click করলে answer open/close হয়
-        // Python equivalent:
-        //   def toggle_answer(question):
-        //       if answer.is_open:
-        //           answer.close()
-        //       else:
-        //           answer.open()
-        // =====================================================
-        const faqQuestions = document.querySelectorAll('.faq-question');
-
-        faqQuestions.forEach(question => {
-            question.addEventListener('click', () => {
-                const answer = question.nextElementSibling; // পরের element = answer
-                const isActive = answer.classList.contains('active');
-
-                // সব answer বন্ধ করো
-                document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('active'));
-                document.querySelectorAll('.faq-question').forEach(q => q.classList.remove('active'));
-
-                // যদি আগে বন্ধ ছিল, তাহলে খোলো
-                if (!isActive) {
-                    answer.classList.add('active');
-                    question.classList.add('active');
-                }
-                // যদি আগে খোলা ছিল, তাহলে বন্ধ থাকবে (উপরে সব বন্ধ করা হয়েছে)
-            });
-        });
-
-        // =====================================================
-        // CONTACT FORM SUBMISSION
-        // Form submit করলে এই function চলে
-        // ✏️ Real form submission-এর জন্য এখানে API call যোগ করতে হবে
-        //    যেমন: Formspree, EmailJS, বা নিজের backend
-        // =====================================================
-        const contactForm = document.getElementById('contactForm');
-        if (contactForm) {
-            contactForm.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                const message = document.getElementById('message').value;
-                if (!name || !email || !message) {
-                    alert('Please fill in all required fields.');
-                    return;
-                }
-                const submitBtn = contactForm.querySelector('.submit-btn');
-                submitBtn.textContent = 'Sending...';
-                submitBtn.disabled = true;
-                try {
-                    const response = await fetch('https://formspree.io/f/xojyrzll', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            name: name,
-                            email: email,
-                            message: message,
-                            _subject: 'New GoAxilo inquiry from ' + name
-                        })
-                    });
-                    if (response.ok) {
-                        submitBtn.textContent = '✅ Message Sent!';
-                        submitBtn.style.background = '#22c55e';
-                        contactForm.reset();
-                        setTimeout(() => {
-                            submitBtn.textContent = 'Send Message';
-                            submitBtn.style.background = '';
-                            submitBtn.disabled = false;
-                        }, 4000);
-                    } else {
-                        throw new Error('Failed');
-                    }
-                } catch(err) {
-                    submitBtn.textContent = '❌ Failed. Try WhatsApp.';
-                    submitBtn.disabled = false;
-                    setTimeout(() => { submitBtn.textContent = 'Send Message'; }, 4000);
-                }
-            });
+    // ---- SCROLL REVEAL (Intersection Observer) ----
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          // Add transition on first reveal
+          entry.target.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+          observer.unobserve(entry.target);
         }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
-        // =====================================================
-        // SMOOTH SCROLL FOR NAV LINKS
-        // Nav link click করলে smooth-এ scroll হয়
-        // =====================================================
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
+    document.querySelectorAll(
+      '.problem-card, .service-card, .process-step, .result-card, ' +
+      '.testimonial-card, .why-card, .blog-card, .faq-item, .form-group'
+    ).forEach(el => observer.observe(el));
 
-    </script>
+    // ---- FAQ ACCORDION ----
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => {
+        const ans = q.nextElementSibling;
+        const isOpen = ans.classList.contains('active');
+        document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('active'));
+        document.querySelectorAll('.faq-question').forEach(b => b.classList.remove('active'));
+        if (!isOpen) { ans.classList.add('active'); q.classList.add('active'); }
+      });
+    });
+
+    // ---- CONTACT FORM ----
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', async e => {
+        e.preventDefault();
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+        if (!name || !email || !message) { alert('Please fill in all required fields.'); return; }
+        const btn = contactForm.querySelector('.submit-btn');
+        btn.textContent = 'Sending...'; btn.disabled = true;
+        try {
+          const res = await fetch('https://formspree.io/f/xojyrzll', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email, message, _subject: 'New GoAxilo inquiry from ' + name })
+          });
+          if (res.ok) {
+            btn.textContent = '✅ Message Sent!';
+            btn.style.background = '#00F5C0'; btn.style.color = '#000';
+            contactForm.reset();
+            setTimeout(() => { btn.textContent = 'Send Message'; btn.style.background = ''; btn.style.color = ''; btn.disabled = false; }, 4000);
+          } else throw new Error();
+        } catch {
+          btn.textContent = '❌ Failed. Try WhatsApp.'; btn.disabled = false;
+          setTimeout(() => { btn.textContent = 'Send Message'; }, 4000);
+        }
+      });
+    }
+
+    // ---- SMOOTH SCROLL ----
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // ---- AUTOMATION FLOW ANIMATION ----
+    // Cycle through which node shows "active" ping effect every 2 seconds
+    const activeNodes = document.querySelectorAll('.flow-node.active');
+    let activeIdx = 0;
+    setInterval(() => {
+      activeNodes.forEach(n => n.classList.remove('active'));
+      activeNodes[activeIdx % activeNodes.length].classList.add('active');
+      activeIdx++;
+    }, 2000);
+  </script>
 
 </body>
 </html>
